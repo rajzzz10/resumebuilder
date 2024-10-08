@@ -1,0 +1,18 @@
+.signinPage{
+    height: 90vh;
+    width: 100vw;
+    background-color: rgb(226, 221, 221);
+}
+.signin-section{
+    height: 100vh;
+    min-width: 50%;
+    max-width: 100%;
+}
+.signinLeftBox{
+    height: 50%;
+    width: 80%;
+}
+.signinRightBox{
+    height: 80%;
+    width: 90%;;
+}

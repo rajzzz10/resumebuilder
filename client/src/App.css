@@ -1,0 +1,17 @@
+.navbar{
+  height: 10vh !important;
+}
+.first-letter::first-letter {
+  font-size: 150%;
+  color: yellow;
+}
+
+.yellow{
+  color: yellow;
+}
+.gray{
+  color: rgb(155, 153, 153);
+}
+.full-width{
+  width: 100%;
+}

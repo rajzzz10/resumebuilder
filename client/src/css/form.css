@@ -1,0 +1,45 @@
+/* Main Form container */
+.formComponents {
+  width: 100%;
+}
+
+/* Left side form */
+.form-left {
+  width: 48%; /* 50% width with small margin */
+  padding-right: 10px;
+}
+
+/* Right side resume preview */
+.form-right {
+  width: 48%; /* 50% width with small margin */
+  padding-left: 10px;
+  position: relative; /* To position zoom icon */
+}
+
+/* Smaller Resume Preview */
+.resumeDemo {
+  width: 100%; /* Full width inside form-right */
+  max-width: 297px; /* A4 size width */
+  height: auto;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+/* Zoomed Resume Preview */
+.resumeDemo.zoomed {
+  transform: scale(1.5);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Zoom Icon */
+.zoom-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #007bff;
+}
+

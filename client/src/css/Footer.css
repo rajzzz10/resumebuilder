@@ -1,0 +1,16 @@
+footer{
+    min-height: 35vh;
+    max-height: fit-content ;
+    width: 100%;
+    background-color: rgb(6, 6, 6);
+}
+@media screen and (max-width: 500px) {
+    .footer-items {
+        text-align: center;
+    }
+    .social-icons{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+  }
