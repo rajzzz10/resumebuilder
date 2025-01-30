@@ -8,7 +8,7 @@ const ExpCheck = () => {
   const [selectedExp, setSelectedExp] = useState('');
 
   const handleFormRedirect = () => {
-    navigate('/form');
+    navigate('/choose-template');
   };
 
   const fresherDisc = () => {
