@@ -1,0 +1,169 @@
+
+.resume {
+    display: flex;
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Left section */
+.left-section {
+    width: 35%;
+    background-color: #3c64b1;
+    padding: 20px;
+    color: #ffffff;
+    position: relative;
+}
+.left-section h2{
+    color: white;
+}
+
+.image-container img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+.resume-content-left {
+    margin-top: 20px;
+    padding: 20px;  
+   
+}
+
+.resume-content-left section {
+    margin-bottom: 100px; 
+}
+
+
+/* h2.section-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #73A7C6;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+} */
+
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 50px;
+    height: 3px;
+    background-color: #ffffff;
+}
+
+.contact-info p {
+    font-size: 14px;
+    margin: 5px 0;
+    padding: 15px 0;
+}
+
+
+.education-item h3 {
+    font-size: 16px;
+    margin: 15px 0 5px;
+}
+
+/* Right section */
+.right-section {
+    width: 65%;
+    padding: 20px;
+}
+
+.resume-header {
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.resume-header .name {
+    font-size: 60px;
+    font-weight:600;
+    color: #3c64b1;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.resume-content-right {
+    margin-top: 10px;
+    padding: 20px;
+}
+
+.resume-content-right section{
+    margin-bottom: 50px;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 18px;
+    color: #3c64b1;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 50px;
+    height: 3px;
+    background-color: #3c64b1;
+}
+.section-title p {
+    margin-bottom: 15px;
+}
+
+.summary-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+}
+
+.experience-item h3 {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0 5px;
+}
+
+.skills-list {
+    list-style-type: square;
+    padding: 0;
+}
+
+.skills-list li {
+    font-size: 14px;
+    padding: 15px 0;
+    background-color: none;
+    color: white;
+}
+
+/* Ensuring responsiveness */
+@media screen and (max-width: 768px) {
+    .resume {
+        flex-direction: column;
+    }
+
+    .left-section, .right-section {
+        width: 100%;
+    }
+
+    .left-section {
+        padding: 15px;
+    }
+
+    .right-section {
+        padding: 15px;
+    }
+}

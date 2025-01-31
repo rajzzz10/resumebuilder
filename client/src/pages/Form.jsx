@@ -9,6 +9,8 @@ import Skills from './Skills';
 import ResumePreview from './ResumePreview';  // Import the ResumePreview component
 import '../css/form.css';
 import Temp1 from '../templatepreviews/temp1';
+import Temp2 from '../templatepreviews/Temp2';
+import { useCheck } from '../context/checkContext';
 
 const Form = () => {
     const navigate = useNavigate();
@@ -23,19 +25,41 @@ const Form = () => {
         certificate: {},
         skills: []
     });
-    
+    const { checkState } = useCheck(); // Get context state
+    const selectedTemplate = checkState.selectedTemplate;
+
+    const renderTemplatePreview = () => {
+        switch (selectedTemplate?.id) {
+          case 1:
+            return <Temp1 formData={formData} />;
+          case 2:
+            return <Temp2 formData={formData} />;
+          case 3:
+            return <Temp2 formData={formData} />; // Renders Temp2 for Template ID 3
+          // Add additional cases as needed
+          default:
+            return null;
+        }
+      };      
+
     const nextPage = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         setPage((page) => Math.min(page + 1, formTitle.length - 1));
     };
-    
+
     const prevPage = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         setPage((page) => Math.max(page - 1, 0));
     };
-    
+
     const handleChange = (section, field, value) => {
-        if (Array.isArray(value)) {
+        if (field === 'image') {
+            // The value is the Base64 string of the image
+            setFormData(prevState => ({
+                ...prevState,
+                [section]: { ...prevState[section], [field]: value }
+            }));
+        } else if (Array.isArray(value)) {
             setFormData(prevState => ({ ...prevState, [section]: value }));
         } else {
             setFormData(prevState => ({
@@ -44,7 +68,8 @@ const Form = () => {
             }));
         }
     };
-    
+
+
     const formComponents = () => {
         switch (page) {
             case 0: return <PersonalInfo formData={formData.personalInfo} handleChange={handleChange} />;
@@ -56,7 +81,7 @@ const Form = () => {
             default: return null;
         }
     };
-    
+
     const handleSubmit = async () => {
         console.log('Form Data:', formData);
         try {
@@ -67,11 +92,11 @@ const Form = () => {
                 },
                 body: JSON.stringify(formData),
             });
-    
+
             const result = await response.json();
             if (response.ok) {
                 alert('Form submitted successfully!');
-                navigate('/resume-preview', { state: { formData } }); 
+                navigate('/resume-preview', { state: { formData } });
             } else {
                 console.error('Submission failed:', result);
             }
@@ -79,7 +104,7 @@ const Form = () => {
             console.error('Error submitting form:', error);
         }
     };
-    
+
     return (
         <div className="container">
             {/* Progress Bar */}
@@ -92,7 +117,7 @@ const Form = () => {
                 <div className="display-6 text-center pb-4">({formDescription[page]})</div>
 
                 <div className="formDiv d-flex row p-0 m-0">
-                    <div className="col-md-7 form-left border border-dark rounded p-4 mb-4 d-flex align-items-start flex-column">
+                    <div className="col-md-7 form-left p-4 mb-4 d-flex align-items-start flex-column">
                         <form className="formComponents mb-auto p-2">
                             {formComponents()}
                             <div className="formBtns d-flex gap-4 p-2 pt-4">
@@ -111,7 +136,7 @@ const Form = () => {
                     {/* Right Side for Live Preview */}
                     <div className="col-md-5 form-right d-flex justify-content-center align-items-center m-0 p-0">
                         {/* Dynamic Resume Preview */}
-                        <Temp1 formData={formData} />
+                        {renderTemplatePreview()}
                     </div>
                 </div>
 

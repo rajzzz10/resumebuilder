@@ -1,37 +1,39 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCheck } from '../context/checkContext'; // Import the context
 import '../css/expCheck.css';
 
 const ExpCheck = () => {
+  const { updateCheckState } = useCheck(); // Access context
   const navigate = useNavigate();
- 
   const [selectedExp, setSelectedExp] = useState('');
 
   const handleFormRedirect = () => {
-    navigate('/form');
+    // Navigate to the appropriate template page based on experience selection
+    if (selectedExp === 'fresher') {
+      updateCheckState({ hasExperience: false, hasCertification: false });
+      navigate('/choose-template/fresher'); 
+    } else if (selectedExp === 'mid') {
+      updateCheckState({ hasExperience: true, hasCertification: false });
+      navigate('/choose-template/mid-level'); 
+    } else if (selectedExp === 'expert') {
+      updateCheckState({ hasExperience: true, hasCertification: true });
+      navigate('/choose-template/expert'); 
+    }
   };
 
-  const fresherDisc = () => {
-    setSelectedExp('fresher');
-  };
+  const fresherDisc = () => setSelectedExp('fresher');
+  const midDisc = () => setSelectedExp('mid');
+  const expertDisc = () => setSelectedExp('expert');
 
-  const midDisc = () => {
-    setSelectedExp('mid');
-  };
-
-  const seniorDisc = () => {
-    setSelectedExp('senior');
-  };
-
-  // Dynamic description based on selected experience level
   const getDescription = () => {
     switch (selectedExp) {
       case 'fresher':
-        return '<i>Typically less than 6 months experience. We\'ve got you! We\'ll help you find relevant experience to fill in your resume.</i>';
+        return '<i>Typically less than 6 months experience. We\'ll help you create a resume with relevant sections.</i>';
       case 'mid':
-        return '<i>2-10 years of experience. Great! We\'ll highlight your achievements and skills to make your resume stand out.</i>';
-      case 'senior':
-        return '<i>More than 10 years of experience. Excellent! We\'ll showcase your expertise and leadership skills to demonstrate your value.</i>';
+        return '<i>2-5 years of experience. We\'ll highlight your achievements and skills.</i>';
+      case 'expert':
+        return '<i>More than 5 years of experience & certification. We\'ll showcase your expertise and leadership skills.</i>';
       default:
         return '';
     }
@@ -62,12 +64,12 @@ const ExpCheck = () => {
               Mid-Level
             </button>
 
-            {/* Senior Button */}
+            {/* Expert Button */}
             <button
-              className={`btn ${selectedExp === 'senior' ? 'btn-dark' : 'btn-outline-dark'}`}
-              onClick={seniorDisc}
+              className={`btn ${selectedExp === 'expert' ? 'btn-dark' : 'btn-outline-dark'}`}
+              onClick={expertDisc}
             >
-              Senior
+              Expert
             </button>
           </div>
         </div>

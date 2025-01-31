@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { useCheck } from '../context/checkContext'; 
 import '../css/chooseTemp.css';
 
-const ChooseTemp = () => {
+const FresherTemplate = () => {
+  const { updateCheckState } = useCheck();
+  const navigate = useNavigate();
+  
   const templates = [
-    { id: 1, name: 'Template 1', image: '/templateImages/temp.webp', link: '/form' }, 
-    { id: 2, name: 'Template 2', image: '/templateImages/temp2.webp', link: '/form' },
-    { id: 3, name: 'Template 3', image: '/templateImages/temp3.webp', link: '/form' },
-    { id: 4, name: 'Template 4', image: '/templateImages/temp.webp', link: '/form' },
-    { id: 5, name: 'Template 5', image: '/templateImages/temp2.webp', link: '/form' },
-    { id: 6, name: 'Template 6', image: '/templateImages/temp.webp', link: '/form' },
-    { id: 7, name: 'Template 7', image: '/templateImages/temp2.webp', link: '/form' },
+    { id: 1, name: 'Template 1', image: '/templateImages/freshers-Templates/fresherTemp1.webp', hasImage: true },
+    { id: 2, name: 'Template 2', image: '/templateImages/freshers-Templates/fresherTemp2.webp', hasImage: true },
+    { id: 3, name: 'Template 2', image: '/templateImages/freshers-Templates/fresherTemp3.webp', hasImage: true },
+    // Add more templates as needed
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,10 +26,15 @@ const ChooseTemp = () => {
     setCurrentIndex((prevIndex) => (prevIndex + templatesToShow) % templates.length);
   };
 
+  const handleTemplateSelection = (hasImage) => {
+    updateCheckState({ hasImage });
+    navigate('/form'); // Redirect to form page
+  };
+
   return (
     <Container className="d-flex flex-column align-items-center py-4">
-      <h2 className="text-center mb-3 text-warning fw-bolder">Choose a Resume Template</h2>
-      <p className="text-center mb-4">Select one of our expertly designed resume templates to kickstart your job application.</p>
+      <h2 className="text-center mb-3 text-warning fw-bolder">Choose a Fresher Resume Template</h2>
+      <p className="text-center mb-4">Select one of our templates designed for freshers.</p>
       <div className="template-slider d-flex align-items-center position-relative w-100">
         <Button variant="warning" size="lg" className="prev-btn" onClick={handlePrev}>‹</Button>
         <Row className="w-100">
@@ -35,7 +42,7 @@ const ChooseTemp = () => {
             <Col key={template.id} xs={12} md={4} className="template-card mb-4">
               <img src={template.image} alt={template.name} className="img-fluid template-image" />
               <div className="text-center mt-2">
-                <Button variant="warning" onClick={() => window.location.href = template.link}>
+                <Button variant="warning" onClick={() => handleTemplateSelection(template.hasImage)}>
                   Select {template.name}
                 </Button>
               </div>
@@ -48,4 +55,4 @@ const ChooseTemp = () => {
   );
 };
 
-export default ChooseTemp;
+export default FresherTemplate;

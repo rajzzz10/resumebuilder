@@ -17,7 +17,7 @@ const MyNavbar = () => {
           <Nav>
             <Nav.Link href="/signin">Signin</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>
-            <Button variant="btn btn-warning" href='/form'>Get Started Now</Button>
+            <Button variant="btn btn-warning" href='/exp-check'>Get Started Now</Button>
           </Nav>
         </Navbar.Collapse>
       </Container>

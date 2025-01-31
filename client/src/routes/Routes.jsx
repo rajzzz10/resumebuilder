@@ -5,15 +5,18 @@ import Home from '../pages/Home';
 import Signin from '../pages/Signin';
 import Login from '../pages/Login';
 import Form from '../pages/Form';
-import ChooseTemp from '../pages/ChooseTemp';
 import ResumePreview from '../pages/ResumePreview';
 import ExpCheck from '../pages/ExpCheck';
-
+import { CheckProvider } from '../context/checkContext';
+import FresherTemplate from '../pages/FresherTemplate';
+import ExpTemplate from '../pages/ExpTemplate';
+import CertTemplate from '../pages/CertTemplate';
 
 const AppRoutes = () => {
   return (
     <BrowserRouter>
       <MyNavbar />
+      <CheckProvider>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='/resume-preview' element={<ResumePreview/>}/>
@@ -21,8 +24,11 @@ const AppRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/form" element={<Form />} />
         <Route path='/exp-check' element={<ExpCheck/>}/>
-        <Route path='/choose-template' element={<ChooseTemp/>} />
+        <Route path='/choose-template/fresher' element={<FresherTemplate/>} />
+        <Route path='/choose-template/mid-level' element={<ExpTemplate/>} />
+        <Route path='/choose-template/expert' element={<CertTemplate/>} />
       </Routes>
+      </CheckProvider>
     </BrowserRouter>
   );
 };

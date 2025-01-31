@@ -44,7 +44,7 @@
 }
 
 .skills-list {
-    list-style-type: none; /* Remove default bullet points */
+    list-style-type: square; /* Remove default bullet points */
     padding: 0; /* Remove padding */
     margin: 0; /* Remove margin */
     flex: 1 1 20%; /* Each list takes up 20% of the container width */
@@ -52,7 +52,6 @@
 }
 
 .skill-item {
-    background-color: #007bff;
     color: white;
     padding: 5px 10px; /* Padding for each skill item */
     border-radius: 5px;

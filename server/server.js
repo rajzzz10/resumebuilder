@@ -7,6 +7,11 @@ require('dotenv').config();
 
 const app = express();
 
+
+// Increase the size limit for JSON payloads
+app.use(express.json({ limit: '10mb' }));  // Adjust the limit as needed
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
 // Middleware
 const corOptions = {
     origin: ["http://localhost:5173"]
