@@ -1,11 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import '../css/signin.css';
 import '../App.css'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
+  const navigate = useNavigate()
+  let [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  })
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/api/login', formData);
+      // Store token in localStorage
+      localStorage.setItem("token", response.data.token);
+      alert(response.data.message);
+      navigate('/')
+    } catch (e) {
+      alert(e.response?.data?.message || "Login Failed");
+    }
+  }
   return (
     <>
       <div className="signinPage row d-flex justify-content-evenly m-0">
@@ -13,26 +37,41 @@ const Login = () => {
           <div className="signinRightBox">
 
             <div className='text-center p-3 fs-3'>Welcome Back</div>
-            <FloatingLabel
-              controlId="floatingInput"
-              label="Email address"
-              className="mb-3"
-            >
-              <Form.Control type="email" placeholder="name@example.com" />
-            </FloatingLabel>
-            <FloatingLabel controlId="floatingPassword" label="Password">
-              <Form.Control type="password" placeholder="Password" />
-            </FloatingLabel>
+            <form onSubmit={handleLogin}>
+              <FloatingLabel
+                controlId="floatingInput"
+                label="Email address"
+                className="mb-3"
+              >
+                <Form.Control
+                  name='email'
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="name@example.com" />
+              </FloatingLabel>
+              <FloatingLabel
+                controlId="floatingPassword"
+                label="Password"
+              >
+                <Form.Control
+                  name='password'
+                  type="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="Password" />
+              </FloatingLabel>
 
-            <button className='btn btn-warning mt-5 full-width fs-5' >Login</button>
+              <button type='submit' className='btn btn-warning mt-5 full-width fs-5' >Login</button>
+            </form>
 
             <div className="signinRightfooter text-center full-width pt-5">
-            <p><a className="link-opacity-75 " href="#">Forgot Password?</a></p>
-            <div className='d-flex gap-3 justify-content-center'>
-            <span>Not have Account?</span><p><a className="link-opacity-75 " href="/signin">Sign in</a></p>
-            </div>
-            
-            
+              <p><a className="link-opacity-75 " href="#">Forgot Password?</a></p>
+              <div className='d-flex gap-3 justify-content-center'>
+                <span>Not have Account?</span><p><a className="link-opacity-75 " href="/signin">Sign in</a></p>
+              </div>
+
+
             </div>
           </div>
         </div>
