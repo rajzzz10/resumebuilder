@@ -81,7 +81,7 @@ const ExpCheck = () => {
         ></div>
 
         <div className="d-flex justify-content-center align-items-center m-4">
-          <button className="btn btn-warning" onClick={handleFormRedirect}>
+          <button className="btn btn-warning" onClick={handleFormRedirect} disabled={!selectedExp}>
             Submit
           </button>
         </div>

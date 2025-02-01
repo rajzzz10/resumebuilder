@@ -22,12 +22,13 @@ const ExpTemplate = () => {
   const templatesToShow = 3;
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - templatesToShow + templates.length) % templates.length);
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? templates.length - templatesToShow : prevIndex - 1));
   };
-
+  
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + templatesToShow) % templates.length);
+    setCurrentIndex((prevIndex) => (prevIndex + templatesToShow >= templates.length ? 0 : prevIndex + 1));
   };
+  
 
   const handleTemplateSelection = (template) => {
     updateCheckState({ hasImage: template.hasImage, selectedTemplate: template }); // Store entire template object

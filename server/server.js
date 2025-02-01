@@ -18,10 +18,8 @@ const corOptions = {
 };
 app.use(cors(corOptions));
 app.use(express.json());
-
-
 // Connect to MongoDB
-mongoose.connect(`mongodb+srv://rajkumarmohanty949:CziuOf59FxnLUNjM@cluster0.czm2m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/ResumeTest`)
+mongoose.connect(`${process.env.MONGO_URI}/${process.env.DATABASE_NAME}`)
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.log('Database connection error:', err));
 
