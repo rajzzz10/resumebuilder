@@ -9,27 +9,29 @@ const FresherTemplate = () => {
   const navigate = useNavigate();
   
   const templates = [
-    { id: 1, name: 'Template 1', image: '/templateImages/freshers-Templates/fresherTemp1.webp', hasImage: true },
-    { id: 2, name: 'Template 2', image: '/templateImages/freshers-Templates/fresherTemp2.webp', hasImage: true },
-    { id: 3, name: 'Template 2', image: '/templateImages/freshers-Templates/fresherTemp3.webp', hasImage: true },
-    // Add more templates as needed
+    { id: 1, name: 'Fresher Template 1', image: '/templateImages/freshers-Templates/fresherTemp1.webp', hasImage: true },
+    { id: 2, name: 'Fresher Template 2', image: '/templateImages/freshers-Templates/fresherTemp2.webp', hasImage: true },
+    { id: 3, name: 'Fresher Template 3', image: '/templateImages/freshers-Templates/fresherTemp3.webp', hasImage: true },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const templatesToShow = 3;
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? templates.length - templatesToShow : prevIndex - 1));
+    if (currentIndex > 0) {
+      setCurrentIndex((prevIndex) => prevIndex - 1);
+    }
   };
   
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + templatesToShow >= templates.length ? 0 : prevIndex + 1));
+    if (currentIndex + templatesToShow < templates.length) {
+      setCurrentIndex((prevIndex) => prevIndex + 1);
+    }
   };
-  
 
-  const handleTemplateSelection = (hasImage) => {
-    updateCheckState({ hasImage });
-    navigate('/form'); // Redirect to form page
+  const handleTemplateSelection = (template) => {
+    updateCheckState({ hasImage: template.hasImage, selectedTemplate: template }); // Store template
+    navigate('/form'); 
   };
 
   return (
@@ -37,20 +39,20 @@ const FresherTemplate = () => {
       <h2 className="text-center mb-3 text-warning fw-bolder">Choose a Fresher Resume Template</h2>
       <p className="text-center mb-4">Select one of our templates designed for freshers.</p>
       <div className="template-slider d-flex align-items-center position-relative w-100">
-        <Button variant="warning" size="lg" className="prev-btn" onClick={handlePrev}>‹</Button>
+        <Button variant="warning" size="lg" className="prev-btn" onClick={handlePrev} disabled={currentIndex === 0}>‹</Button>
         <Row className="w-100">
           {templates.slice(currentIndex, currentIndex + templatesToShow).map((template) => (
             <Col key={template.id} xs={12} md={4} className="template-card mb-4">
               <img src={template.image} alt={template.name} className="img-fluid template-image" />
               <div className="text-center mt-2">
-                <Button variant="warning" onClick={() => handleTemplateSelection(template.hasImage)}>
+                <Button variant="warning" onClick={() => handleTemplateSelection(template)}>
                   Select {template.name}
                 </Button>
               </div>
             </Col>
           ))}
         </Row>
-        <Button variant="warning" size="lg" className="next-btn" onClick={handleNext}>›</Button>
+        <Button variant="warning" size="lg" className="next-btn" onClick={handleNext} disabled={currentIndex + templatesToShow >= templates.length}>›</Button>
       </div>
     </Container>
   );
