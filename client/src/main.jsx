@@ -5,7 +5,7 @@ import AppRoutes from './routes/Routes.jsx';
 
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
     <AppRoutes />
-  </StrictMode>,
+  // </StrictMode>,
 )

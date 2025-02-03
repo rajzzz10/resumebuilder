@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PersonalInfo from './PersonalInfo';
 import Education from './Education';
@@ -56,38 +56,76 @@ const Form = () => {
         if (page > 0) setPage(page - 1);
     };
 
-    
-const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log('Form Data:', formData);
-    try {
-        const response = await fetch('http://localhost:5000/api/form', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        });
 
-        const result = await response.json();
-        if (response.ok) {
-            alert('Form submitted successfully!');
-            navigate('/resume-preview', { state: { formData } });
-        } else {
-            console.error('Submission failed:', result);
-        }
-    } catch (error) {
-        console.error('Error submitting form:', error);
-    }
-};
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log('Form Data:', formData);
+        try {
+            const response = await fetch('http://localhost:5000/api/form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
 
-    const renderTemplatePreview = () => {
-        switch (selectedTemplate?.id) {
-            case 1: return <Temp1 formData={formData} />;
-            case 2: return <Temp2 formData={formData} />;
-            default: return null;
+            const result = await response.json();
+            if (response.ok) {
+                alert('Form submitted successfully!');
+                navigate('/resume-preview', { state: { formData } });
+            } else {
+                console.error('Submission failed:', result);
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
         }
     };
+
+    useEffect(()=>{
+        console.log("Selected Templete",selectedTemplate)
+    },[])
+
+    // const renderTemplatePreview = () => {
+    //     switch (selectedTemplate?.id) {
+    //         case 2: return <Temp1 formData={formData} />; // Renders Temp1 for Experienced Template 2
+    //         case 4: return <Temp2 formData={formData} />; // Renders Temp2 for Experienced Template 4
+    //         default: return null; // Add other cases as needed
+    //     }
+    // };
+
+    const renderTemplatePreview = () => {
+        if (!selectedTemplate) return null;
+    
+        const { id, name } = selectedTemplate;
+    
+        if (name.includes('Fresher Template')) {
+            console.log("Fresher");
+            // switch (id) {
+            //     case 1: return <FresherTemp1 />;
+            //     case 2: return <FresherTemp2 />;
+            //     default: return null;
+            // }
+        } 
+        else if (name.includes('Experienced Template')) {
+            console.log("Experienced");
+            // switch (id) {
+            //     case 1: return <MidTemp1 />;
+            //     case 2: return <MidTemp2 />;
+            //     default: return null;
+            // }
+        } 
+        else if (name.includes('Certified Template')) {
+            console.log("Certified");
+            switch (id) {
+                case 3: return <Temp2 formData={formData} />;
+                // case 2: return <ExpTemp2 />;
+                default: return null;
+            }
+        }
+    
+        return null;
+    };
+
 
     return (
         <div className="container">
