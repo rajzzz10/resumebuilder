@@ -85,6 +85,8 @@ const Form = () => {
         console.log("Selected Templete",selectedTemplate)
     },[])
 
+    
+
     // const renderTemplatePreview = () => {
     //     switch (selectedTemplate?.id) {
     //         case 2: return <Temp1 formData={formData} />; // Renders Temp1 for Experienced Template 2
