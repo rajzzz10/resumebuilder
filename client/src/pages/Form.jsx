@@ -10,6 +10,7 @@ import Temp1 from '../templatepreviews/temp1';
 import Temp2 from '../templatepreviews/Temp2';
 import { useCheck } from '../context/checkContext';
 import '../css/form.css';
+import FresherTemp2 from '../templatepreviews/FresherTemp2';
 
 const Form = () => {
     const navigate = useNavigate();
@@ -27,10 +28,20 @@ const Form = () => {
     });
 
     const handleChange = (section, field, value) => {
-        setFormData((prevState) => ({
-            ...prevState,
-            [section]: { ...prevState[section], [field]: value }
-        }));
+        if (field === 'image') {
+            // The value is the Base64 string of the image
+            setFormData(prevState => ({
+                ...prevState,
+                [section]: { ...prevState[section], [field]: value }
+            }));
+        } else if (Array.isArray(value)) {
+            setFormData(prevState => ({ ...prevState, [section]: value }));
+        } else {
+            setFormData(prevState => ({
+                ...prevState,
+                [section]: { ...prevState[section], [field]: value }
+            }));
+        }
     };
 
     // Define form steps dynamically
@@ -102,11 +113,11 @@ const Form = () => {
     
         if (name.includes('Fresher Template')) {
             console.log("Fresher");
-            // switch (id) {
-            //     case 1: return <FresherTemp1 />;
-            //     case 2: return <FresherTemp2 />;
-            //     default: return null;
-            // }
+            switch (id) {
+                // case 1: return <FresherTemp1 />;
+                case 2: return <FresherTemp2 formData={formData}/>;
+                default: return null;
+            }
         } 
         else if (name.includes('Experienced Template')) {
             console.log("Experienced");

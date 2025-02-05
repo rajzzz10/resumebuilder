@@ -1,0 +1,146 @@
+.modern-resume {
+    max-width: 1200px;
+    margin: 2rem auto;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .resume-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 297mm; /* A4 height */
+    width: 210mm; /* A4 width */
+    margin: 0 auto;
+  }
+  
+  /* Left Column Styles */
+  .left-column {
+    background: black;
+    color: white;
+    padding: 2rem;
+  }
+  
+  .profile-section {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .profile-image {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1rem;
+  }
+  
+  .profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  .profile-name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+  }
+  
+  .profile-title {
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin-bottom: 2rem;
+  }
+  
+  /* Right Column Styles */
+  .right-column {
+    background: white;
+    padding: 2rem;
+  }
+  
+  /* Section Styles */
+  .section-heading {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+  
+  .section-heading::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 3rem;
+    height: 3px;
+    background: #ccc;
+  }
+  
+  .right-column .section-heading::after {
+    background: black;
+  }
+  
+  /* Skills Lists */
+  .skills-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .skills-list li {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+  }
+  
+  /* Contact Section */
+  .contact-info p {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+  }
+  
+  .contact-info i {
+    margin-right: 0.5rem;
+  }
+  
+  /* Education Section */
+  .education-item {
+    margin-bottom: 1.5rem;
+  }
+  
+  .education-item h4 {
+    font-size: 1rem;
+    margin: 0;
+  }
+  
+  .education-item .date {
+    font-size: 0.8rem;
+    color: #666;
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .resume-grid {
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
+    
+    .profile-name {
+      font-size: 2rem;
+    }
+    
+    .left-column, .right-column {
+      padding: 1rem;
+    }
+  }
+  
+  /* Print Styles */
+  @media print {
+    .modern-resume {
+      box-shadow: none;
+    }
+    
+    .resume-grid {
+      width: 210mm;
+      height: 297mm;
+    }
+  }

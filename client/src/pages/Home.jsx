@@ -28,7 +28,7 @@ const Home = () => {
                     <div className="hero-intro pt-5 fw-normal ">Only 2% of Resume makes it past to first Round.</div><br />
                     <div className="hero-intro-bottom fw-medium  ">BE IN TOP 2%</div>
 
-                    <button className='btn btn-warning hero-btn mt-5' ><a href="/exp-check" >Create Resume Now</a></button>
+                    <button className='btn btn-warning hero-btn mt-5' ><a href="/exp-check" style={{textDecoration : 'none' , color:'black'}}>Create Resume Now</a></button>
 
                 </div>
                 <div className="hero-right col-lg-6 col-md-12 ">
