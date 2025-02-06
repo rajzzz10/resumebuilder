@@ -4,7 +4,7 @@ import '../css/Temp1.css'
 const Temp1 = ({ formData }) => {
     return (
         <div>
-            <div id="resume" className="resume">
+            <div id="resume" className="resume" >
                 {/* Header Section with Name and Contact Info */}
                 <header className="resume-header">
                     <h1 className="name">{formData.personalInfo?.name}</h1>

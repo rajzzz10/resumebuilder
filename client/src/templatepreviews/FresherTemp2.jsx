@@ -3,7 +3,7 @@ import '../css/FresherTemp2.css';
 
 const FresherTemp2 = ({ formData }) => {
   return (
-    <div className="modern-resume">
+    <div className="modern-resume" id='resume'>
       <div className="resume-grid">
         {/* Left Column */}
         <div className="left-column">

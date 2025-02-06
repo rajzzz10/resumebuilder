@@ -7,11 +7,11 @@ import Certificate from './Certificate';
 import ProfSummary from './ProfSummary';
 import Skills from './Skills';
 import Temp1 from '../templatepreviews/temp1';
-import Temp2 from '../templatepreviews/Temp2';
 import { useCheck } from '../context/checkContext';
 import '../css/form.css';
 import FresherTemp2 from '../templatepreviews/FresherTemp2';
 import OtherDetails from './OtherDetails';
+import CertTemp3 from '../templatepreviews/CertTemp3';
 
 const Form = () => {
     const navigate = useNavigate();
@@ -102,11 +102,14 @@ const Form = () => {
                 },
                 body: JSON.stringify(formData),
             });
-
+    
             const result = await response.json();
             if (response.ok) {
                 alert('Form submitted successfully!');
-                navigate('/resume-preview', { state: { formData } });
+                // Pass the formData and selectedTemplate to the preview page
+                navigate('/resume-preview', { 
+                    state: { formData, selectedTemplate }
+                });
             } else {
                 console.error('Submission failed:', result);
             }
@@ -114,20 +117,12 @@ const Form = () => {
             console.error('Error submitting form:', error);
         }
     };
+    
 
     useEffect(() => {
         console.log("Selected Templete", selectedTemplate)
     }, [])
 
-
-
-    // const renderTemplatePreview = () => {
-    //     switch (selectedTemplate?.id) {
-    //         case 2: return <Temp1 formData={formData} />; // Renders Temp1 for Experienced Template 2
-    //         case 4: return <Temp2 formData={formData} />; // Renders Temp2 for Experienced Template 4
-    //         default: return null; // Add other cases as needed
-    //     }
-    // };
 
     const renderTemplatePreview = () => {
         if (!selectedTemplate) return null;
@@ -153,7 +148,7 @@ const Form = () => {
         else if (name.includes('Certified Template')) {
             console.log("Certified");
             switch (id) {
-                case 3: return <Temp2 formData={formData} />;
+                case 3: return <CertTemp3 formData={formData} />;
                 // case 2: return <ExpTemp2 />;
                 default: return null;
             }

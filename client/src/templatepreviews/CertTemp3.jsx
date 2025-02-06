@@ -1,10 +1,10 @@
 import React from 'react';
-import '../css/Temp2.css';
+import '../css/CertTemp3.css';
 
-const Temp2 = ({ formData }) => {
+const CertTemp3 = ({ formData }) => {
     return (
         <div>
-            <div id="resume" className="resume">
+            <div className="resume" id='resume'>
                 <div className='left-section'>
                     <div className='image-container'>
                         <img src={formData.personalInfo?.image} alt="Profile" />
@@ -102,4 +102,4 @@ const Temp2 = ({ formData }) => {
     );
 }
 
-export default Temp2;
+export default CertTemp3;
