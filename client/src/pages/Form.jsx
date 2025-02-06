@@ -20,7 +20,7 @@ const Form = () => {
 
     // Form State
     const [formData, setFormData] = useState({
-        personalInfo: { name: '',title: '', email: '', phone: '' },
+        personalInfo: { name: '',title: '', email: '', phone: '' , adress:''},
         profSummary: { summary: '' },
         education: [{ degree: '', institution: '', year: '' }],
         experience: hasExperience ? [{ jobTitle: '', company: '', years: '' }] : [],

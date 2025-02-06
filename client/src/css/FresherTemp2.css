@@ -39,13 +39,13 @@
   }
   
   .profile-name {
-    font-size: 2rem;
+    font-size: 3.8rem;
     font-weight: bold;
     margin: 0.5rem 0;
   }
   
   .profile-title {
-    font-size: 1.2rem;
+    font-size: 1.7rem;
     font-weight: normal;
     margin-bottom: 2rem;
   }
@@ -59,7 +59,7 @@
   
   /* Section Styles */
   .section-heading {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     text-transform: uppercase;
     margin-bottom: 1rem;
     position: relative;
@@ -99,12 +99,14 @@
   }
   
   .education-item h4 {
-    font-size: 1rem;
+    font-size: 1.3rem;
     margin: 0;
   }
-  
+  .education-item p {
+    font-size: 1rem;
+  }
   .education-item .date {
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: #666;
   }
   

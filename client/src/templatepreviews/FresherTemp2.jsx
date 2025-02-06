@@ -13,12 +13,6 @@ const FresherTemp2 = ({ formData }) => {
                 <img src={formData.personalInfo.image} alt="Profile" />
               </div>
             )}
-            <h1 className="profile-name">
-              {formData.personalInfo?.name || 'YOUR NAME'}
-            </h1>
-            <h2 className="profile-title">
-              {formData.personalInfo?.title || 'Professional Title'}
-            </h2>
           </div>
 
           <div className="profile-summary">
@@ -36,6 +30,7 @@ const FresherTemp2 = ({ formData }) => {
                   {edu.stYear ? new Date(edu.stYear).getFullYear() : ''} - 
                   {edu.endYear ? new Date(edu.endYear).getFullYear() : 'Present'}
                 </div>
+                <hr />
               </div>
             ))}
           </div>
@@ -43,6 +38,13 @@ const FresherTemp2 = ({ formData }) => {
 
         {/* Right Column */}
         <div className="right-column">
+          <h1 className="profile-name">
+            {formData.personalInfo?.name || 'YOUR NAME'}
+          </h1>
+          <h2 className="profile-title">
+            {formData.personalInfo?.title || 'Professional Title'}
+          </h2>
+          
           <div className="skills-section">
             <h3 className="section-heading">PROFESSIONAL SKILLS</h3>
             <ul className="custom-list">
@@ -74,9 +76,8 @@ const FresherTemp2 = ({ formData }) => {
             <h3 className="section-heading">CONTACT</h3>
             <div className="contact-info">
               <p><i className="fas fa-phone"></i> {formData.personalInfo?.phone || '+0 123 456 789'}</p>
-              <p><i className="fas fa-globe"></i> {formData.personalInfo?.website || 'www.yourwebsitename.com'}</p>
               <p><i className="fas fa-envelope"></i> {formData.personalInfo?.email || 'youremailaddress@mail.com'}</p>
-              <p><i className="fas fa-map-marker-alt"></i> {formData.personalInfo?.address || '445, Mount Eden Road, Anytown, USA'}</p>
+              <p><i className="fas fa-map-marker-alt"></i> {formData.personalInfo?.adress || '445, Mount Eden Road, Anytown, USA'}</p>
             </div>
           </div>
         </div>

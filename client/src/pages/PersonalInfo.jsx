@@ -59,7 +59,18 @@ const PersonalInfo = ({ formData, handleChange }) => {
                     placeholder="name@example.com" />
                 <label htmlFor="floatingInput">Mobile no</label>
             </div>
-            
+            <br />
+            <div className="form-floating mb-3">
+                <input 
+                    type="text" 
+                    className="form-control" 
+                    id="floatingInput" 
+                    value={formData.adress || ""} 
+                    onChange={(e) => handleChange('personalInfo', 'adress', e.target.value)} 
+                    placeholder="name@example.com" />
+                <label htmlFor="floatingInput">Adress</label>
+            </div>
+            <br />
             {/* Conditionally render the image input field */}
             {hasImage && (
                 <div className="form-floating mb-3">
