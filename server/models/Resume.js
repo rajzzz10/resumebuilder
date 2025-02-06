@@ -2,29 +2,29 @@ const mongoose = require('mongoose');
 
 const ResumeSchema = new mongoose.Schema({
   personalInfo: {
-    name: { type: String, required: true },
-    title: { type: String, required: true },
-    email: { type: String, required: true },
-    phone: { type: String, required: true },
-    adress: { type: String, required: true },
+    name: { type: String },
+    title: { type: String },
+    email: { type: String },
+    phone: { type: String },
+    adress: { type: String },
     image: { type: String } // Base64 string for profile picture
   },
   profSummary: {
-    summary: { type: String, required: true }
+    summary: { type: String }
   },
   education: [{
-    degree: { type: String, required: true },
-    institution: { type: String, required: true },
-    year: { type: String, required: true } // Single year as a string (e.g., "2024")
+    degree: { type: String },
+    institution: { type: String },
+    year: { type: String } // Single year as a string (e.g., "2024")
   }],
   experience: [{
-    jobTitle: { type: String, required: true },
-    company: { type: String, required: true },
-    years: { type: String, required: true } // Example: "2020-2023"
+    jobTitle: { type: String },
+    company: { type: String },
+    years: { type: String } // Example: "2020-2023"
   }],
   certificate: [{
-    title: { type: String, required: true },
-    issuedBy: { type: String, required: true }
+    title: { type: String },
+    issuedBy: { type: String }
   }],
   skills: [{ type: String }],
   otherDetails: {

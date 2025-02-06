@@ -1,40 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { CheckContext } from '../context/checkContext';
 
 const OtherDetails = ({ formData, handleChange }) => {
-  const [hobbyInput, setHobbyInput] = useState('');
-  const [hobbies, setHobbies] = useState(formData.hobbies || []);
+  const { checkState } = useContext(CheckContext);
+  
+  // Initialize languages and hobbies from formData or set as empty arrays
+  const [language, setLanguage] = useState('');
+  const [hobby, setHobby] = useState('');
 
-  const [languageInput, setLanguageInput] = useState('');
-  const [languages, setLanguages] = useState(formData.languages || []);
+  const addLanguage = () => {
+    if (language && !formData.languages.includes(language)) {
+      const updatedLanguages = [...formData.languages, language];
+      handleChange('otherDetails', 'languages', updatedLanguages);
+      setLanguage(''); // Reset the input field
+    }
+  };
+
+  const removeLanguage = (lang) => {
+    const updatedLanguages = formData.languages.filter(language => language !== lang);
+    handleChange('otherDetails', 'languages', updatedLanguages);
+  };
 
   const addHobby = () => {
-    if (hobbyInput) {
-      const newHobbies = [...hobbies, hobbyInput];
-      setHobbies(newHobbies);
-      handleChange('otherDetails', 'hobbies', newHobbies);
-      setHobbyInput('');
+    if (hobby && !formData.hobbies.includes(hobby)) {
+      const updatedHobbies = [...formData.hobbies, hobby];
+      handleChange('otherDetails', 'hobbies', updatedHobbies);
+      setHobby(''); // Reset the input field
     }
   };
 
   const removeHobby = (hobbyToRemove) => {
-    const newHobbies = hobbies.filter(hobby => hobby !== hobbyToRemove);
-    setHobbies(newHobbies);
-    handleChange('otherDetails', 'hobbies', newHobbies);
-  };
-
-  const addLanguage = () => {
-    if (languageInput) {
-      const newLanguages = [...languages, languageInput];
-      setLanguages(newLanguages);
-      handleChange('otherDetails', 'languages', newLanguages);
-      setLanguageInput('');
-    }
-  };
-
-  const removeLanguage = (languageToRemove) => {
-    const newLanguages = languages.filter(lang => lang !== languageToRemove);
-    setLanguages(newLanguages);
-    handleChange('otherDetails', 'languages', newLanguages);
+    const updatedHobbies = formData.hobbies.filter(h => h !== hobbyToRemove);
+    handleChange('otherDetails', 'hobbies', updatedHobbies);
   };
 
   return (
@@ -46,9 +43,9 @@ const OtherDetails = ({ formData, handleChange }) => {
             id="language-input"
             className="form-control"
             type="text"
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)} // Update the local state
             placeholder="Add a Language"
-            value={languageInput}
-            onChange={(e) => setLanguageInput(e.target.value)}
           />
           <label htmlFor="language-input">Add a Language</label>
         </div>
@@ -59,8 +56,13 @@ const OtherDetails = ({ formData, handleChange }) => {
 
       {/* Display Added Languages */}
       <div className="language-buttons">
-        {languages.map((language, index) => (
-          <button key={index} type="button" className="btn btn-danger mt-2" onClick={() => removeLanguage(language)}>
+        {formData.languages.map((language, index) => (
+          <button
+            key={index}
+            type="button"
+            className="btn btn-danger mt-2"
+            onClick={() => removeLanguage(language)}
+          >
             {language} <span>X</span>
           </button>
         ))}
@@ -73,9 +75,9 @@ const OtherDetails = ({ formData, handleChange }) => {
             id="hobby-input"
             className="form-control"
             type="text"
+            value={hobby}
+            onChange={(e) => setHobby(e.target.value)} // Update the local state
             placeholder="Add a Hobby"
-            value={hobbyInput}
-            onChange={(e) => setHobbyInput(e.target.value)}
           />
           <label htmlFor="hobby-input">Add a Hobby</label>
         </div>
@@ -86,8 +88,13 @@ const OtherDetails = ({ formData, handleChange }) => {
 
       {/* Display Added Hobbies */}
       <div className="hobby-buttons">
-        {hobbies.map((hobby, index) => (
-          <button key={index} type="button" className="btn btn-danger mt-2" onClick={() => removeHobby(hobby)}>
+        {formData.hobbies.map((hobby, index) => (
+          <button
+            key={index}
+            type="button"
+            className="btn btn-danger mt-2"
+            onClick={() => removeHobby(hobby)}
+          >
             {hobby} <span>X</span>
           </button>
         ))}

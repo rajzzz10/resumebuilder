@@ -32,83 +32,97 @@ const ResumePreview = () => {
 
     return (
         <div className="resume-container" >
-            <div className="modern-resume" id='resume'>
-                <div className="resume-grid">
-                    {/* Left Column */}
-                    <div className="left-column">
-                        <div className="profile-section">
-                            {formData.personalInfo?.image && (
-                                <div className="profile-image">
-                                    <img src={formData.personalInfo.image} alt="Profile" />
-                                </div>
-                            )}
-                        </div>
-
-                        <div className="profile-summary">
-                            <h3 className="section-heading">PROFILE SUMMARY</h3>
-                            <p>{formData.profSummary?.summary || 'Your professional summary here'}</p>
-                        </div>
-
-                        <div className="education-section">
-                            <h3 className="section-heading">EDUCATION</h3>
-                            {formData.education?.map((edu, index) => (
-                                <div key={index} className="education-item">
-                                    <h4>{edu.institution || 'UNIVERSITY NAME'}</h4>
-                                    <p>{edu.degree || 'Enter Your Degree'}</p>
-                                    <div className="date">
-                                        {edu.stYear ? new Date(edu.stYear).getFullYear() : ''} -
-                                        {edu.endYear ? new Date(edu.endYear).getFullYear() : 'Present'}
-                                    </div>
-                                    <hr />
-                                </div>
-                            ))}
-                        </div>
+             <div id="resume" className="resume">
+                <div className='left-section'>
+                    <div className='image-container'>
+                        <img src={formData.personalInfo?.image} alt="Profile" />
                     </div>
 
-                    {/* Right Column */}
-                    <div className="right-column">
-                        <h1 className="profile-name">
-                            {formData.personalInfo?.name || 'YOUR NAME'}
-                        </h1>
-                        <h2 className="profile-title">
-                            {formData.personalInfo?.title || 'Professional Title'}
-                        </h2>
+                    <div className='resume-content-left'>
+                        {/* Contact Info */}
+                        <section>
+                            <div className="contact-info">
+                                <h2 className="section-title">Contact</h2>
+                                <p><i className="fas fa-envelope"></i> {formData.personalInfo?.email || 'youremailaddress@mail.com'}</p>
+                                <p><i className="fas fa-phone"></i> {formData.personalInfo?.phone || '+0 123 456 789'}</p>
+                                <p><i className="fas fa-map-marker-alt"></i> {formData.personalInfo?.adress || 'Mumbai , India'}</p>
+                            </div>
+                        </section>
 
-                        <div className="skills-section">
-                            <h3 className="section-heading">PROFESSIONAL SKILLS</h3>
+                        {/* Skills Section */}
+                        <section className="section">
+                            <h2 className="section-title">Skills Summary</h2>
                             <ul className="custom-list">
-                                {formData.skills?.map((skill, index) => (
+                                {formData.skills.map((skill, index) => (
                                     <li key={index}>{skill}</li>
                                 ))}
                             </ul>
-                        </div>
+                        </section>
 
-                        <div className="languages-section">
-                            <h3 className="section-heading">LANGUAGES</h3>
-                            <ul className="custom-list">
+                        {/* Certifications Section */}
+                        <section className="section cert">
+                            <h2 className="section-title">Certifications</h2>
+                            <p className='fw-bold'>{formData.certificate?.certification}</p>
+                            <p>{formData.certificate?.placeOfCert}</p>
+                        </section>
+
+                        <section className="section">
+                            <h2 className="section-title">Languages</h2>
+                            <ul className='custom-list'>
                                 {formData.otherDetails?.languages?.map((language, index) => (
                                     <li key={index}>{language}</li>
                                 ))}
                             </ul>
-                        </div>
+                        </section>
+                    </div>
+                </div>
 
-                        <div className="hobbies-section">
-                            <h3 className="section-heading">HOBBIES & INTERESTS</h3>
-                            <ul className="custom-list">
+                <div className='right-section'>
+                    {/* Header Section with Name and Job Title */}
+                    <header className="resume-header">
+                        <h1 className="name">{formData.personalInfo?.name || 'YOUR NAME'}</h1>
+                        <h3 className="job-title">{formData.personalInfo?.title || 'Professional Title'}</h3>
+                    </header>
+
+                    <div className="resume-content-right">
+                        {/* Professional Summary */}
+                        <section className="section">
+                            <h2 className="section-title">Professional Summary</h2>
+                            <p className="summary-text">{formData.profSummary?.summary}</p>
+                        </section>
+
+                        {/* Experience */}
+                        <section className="section">
+                            <h2 className="section-title">Work Experience</h2>
+                            {formData.experience.map((exp, index) => (
+                                <div className="experience-item" key={index}>
+                                    <h3>{exp.role}</h3>
+                                    <p>{exp.company}</p>
+                                    <p>{new Date(exp.stDate).toLocaleDateString()} - {exp.endDate ? new Date(exp.endDate).toLocaleDateString() : 'Present'}</p>
+                                </div>
+                            ))}
+                        </section>
+
+                        {/* Education */}
+                        <section className="section">
+                            <h2 className="section-title">Education History</h2>
+                            {formData.education.map((edu, index) => (
+                                <div className="education-item" key={index}>
+                                    <h3>{edu.degree}</h3>
+                                    <p>{edu.institution}</p>
+                                    <p>{new Date(edu.stYear).toLocaleDateString()} - {edu.endYear ? new Date(edu.endYear).toLocaleDateString() : 'Present'}</p>
+                                </div>
+                            ))}
+                        </section>
+                        {/* Hobbies Section */}
+                        <section className="section">
+                            <h2 className="section-title">Hobbies</h2>
+                            <ul>
                                 {formData.otherDetails?.hobbies?.map((hobby, index) => (
                                     <li key={index}>{hobby}</li>
                                 ))}
                             </ul>
-                        </div>
-
-                        <div className="contact-section">
-                            <h3 className="section-heading">CONTACT</h3>
-                            <div className="contact-info">
-                                <p><i className="fas fa-phone"></i> {formData.personalInfo?.phone || '+0 123 456 789'}</p>
-                                <p><i className="fas fa-envelope"></i> {formData.personalInfo?.email || 'youremailaddress@mail.com'}</p>
-                                <p><i className="fas fa-map-marker-alt"></i> {formData.personalInfo?.adress || '445, Mount Eden Road, Anytown, USA'}</p>
-                            </div>
-                        </div>
+                        </section>
                     </div>
                 </div>
             </div>
