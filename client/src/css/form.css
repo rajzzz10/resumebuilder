@@ -1,50 +1,90 @@
-/* Main Form container */
+/* Main container */
+.form-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Form wrapper */
 .formDiv {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 30px;
+  min-height: 600px;
+  background: #fff;
+  padding: 20px;
 }
 
-/* Left side form */
+/* Left side - Form */
 .form-left {
-  width: 55%; /* Slightly wider form */
-  padding-right: 15px;
-  min-width: 350px;
+  flex: 0 0 40%;
+  padding: 25px 0 25px 25px;
 }
 
-/* Right side resume preview */
+.formComponents {
+  width: 100%;
+}
+
+/* Right side - Preview */
 .form-right {
-  width: 40%;
-  padding-left: 15px;
-  position: relative;
+  flex: 0 0 60%;
+  padding: 25px 25px 25px 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
-/* Resume Preview */
+/* Resume Preview styling */
 .resumeDemo {
   width: 100%;
-  max-width: 297px;
   height: auto;
-  cursor: pointer;
-  border: 1px solid #ddd;
-  padding: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  padding: 20px;
 }
 
-/* Completely Hide resume preview on small screens */
-@media (max-width: 768px) {
-  .form-right {
-    display: none !important; /* Forcefully hide it */
-    visibility: hidden;
-    width: 0;
-    height: 0;
+/* Navigation buttons */
+.top-nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 25px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+}
+
+/* Responsive design - Large tablets and below */
+@media (max-width: 1024px) {
+  .formDiv {
+      flex-direction: column;
   }
 
   .form-left {
-    width: 100% !important; /* Make form full width */
-    padding-right: 0;
+      flex: 0 0 100%;
+      padding: 20px;
+      width: 100%;
+  }
+
+  .form-right {
+      display: none !important; /* Hide preview completely */
+  }
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 768px) {
+  .form-container {
+      padding: 10px;
+  }
+
+  .formDiv {
+      padding: 10px;
+  }
+
+  .form-left {
+      padding: 15px;
+  }
+
+  .top-nav-buttons {
+      padding: 10px 15px;
   }
 }

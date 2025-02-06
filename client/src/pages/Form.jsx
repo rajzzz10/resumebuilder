@@ -20,7 +20,7 @@ const Form = () => {
 
     // Form State
     const [formData, setFormData] = useState({
-        personalInfo: { name: '',title: '', email: '', phone: '' , adress:''},
+        personalInfo: { name: '', title: '', email: '', phone: '', adress: '' },
         profSummary: { summary: '' },
         education: [{ degree: '', institution: '', year: '' }],
         experience: hasExperience ? [{ jobTitle: '', company: '', years: '' }] : [],
@@ -41,15 +41,15 @@ const Form = () => {
         } else if (field === 'image') {
             setFormData(prevState => ({
                 ...prevState,
-                [section]: { 
-                    ...prevState[section], 
-                    [field]: value 
+                [section]: {
+                    ...prevState[section],
+                    [field]: value
                 }
             }));
         } else if (Array.isArray(value)) {
-            setFormData(prevState => ({ 
-                ...prevState, 
-                [section]: value 
+            setFormData(prevState => ({
+                ...prevState,
+                [section]: value
             }));
         } else if (section === 'education') {
             setFormData(prevState => ({
@@ -59,9 +59,9 @@ const Form = () => {
         } else {
             setFormData(prevState => ({
                 ...prevState,
-                [section]: { 
-                    ...prevState[section], 
-                    [field]: value 
+                [section]: {
+                    ...prevState[section],
+                    [field]: value
                 }
             }));
         }
@@ -115,11 +115,11 @@ const Form = () => {
         }
     };
 
-    useEffect(()=>{
-        console.log("Selected Templete",selectedTemplate)
-    },[])
+    useEffect(() => {
+        console.log("Selected Templete", selectedTemplate)
+    }, [])
 
-    
+
 
     // const renderTemplatePreview = () => {
     //     switch (selectedTemplate?.id) {
@@ -131,17 +131,17 @@ const Form = () => {
 
     const renderTemplatePreview = () => {
         if (!selectedTemplate) return null;
-    
+
         const { id, name } = selectedTemplate;
-    
+
         if (name.includes('Fresher Template')) {
             console.log("Fresher");
             switch (id) {
                 // case 1: return <FresherTemp1 />;
-                case 2: return <FresherTemp2 formData={formData}/>;
+                case 2: return <FresherTemp2 formData={formData} />;
                 default: return null;
             }
-        } 
+        }
         else if (name.includes('Experienced Template')) {
             console.log("Experienced");
             // switch (id) {
@@ -149,7 +149,7 @@ const Form = () => {
             //     case 2: return <MidTemp2 />;
             //     default: return null;
             // }
-        } 
+        }
         else if (name.includes('Certified Template')) {
             console.log("Certified");
             switch (id) {
@@ -158,44 +158,52 @@ const Form = () => {
                 default: return null;
             }
         }
-    
+
         return null;
     };
 
 
     return (
-        <div className="container">
+        <div className="form-container">
             {/* Progress Bar */}
-            <div className="progress-container">
+            {/* <div className="progress-container">
                 <div className="progress-bar" style={{ width: `${(page / (formSteps.length - 1)) * 100}%` }}></div>
+            </div> */}
+
+
+
+            <div className="display-3 text-center mb-4">{formSteps[page].title}</div>
+
+            {/* Top Navigation */}
+            <div className="top-nav-buttons">
+                <button onClick={prevPage} className="btn btn-dark" disabled={page === 0}>
+                    Previous
+                </button>
+                {!isLastPage ? (
+                    <button onClick={nextPage} className="btn btn-warning">
+                        Next ({formSteps[page + 1]?.title})
+                    </button>
+                ) : (
+                    <button onClick={handleSubmit} className="btn btn-success">
+                        Submit
+                    </button>
+                )}
             </div>
 
-            <div className="form">
-                <div className="display-3 text-center">{formSteps[page].title}</div>
-
-                <div className="formDiv d-flex row p-0 m-0">
-                    <div className="col-md-7 form-left p-4 mb-4 d-flex align-items-start flex-column">
-                        <form className="formComponents mb-auto p-2">
-                            {formSteps[page].component}
-
-                            <div className="formBtns d-flex gap-4 p-2 pt-4">
-                                <button onClick={prevPage} className="btn btn-dark" disabled={page === 0}>Prev</button>
-                                {isLastPage ? (
-                                    <button type="button" className="btn btn-success" onClick={handleSubmit}>Submit</button>
-                                ) : (
-                                    <button type="button" onClick={nextPage} className="btn btn-warning">
-                                        Next ({formSteps[page + 1]?.title || 'Submit'})
-                                    </button>
-                                )}
-                            </div>
-                        </form>
-                    </div>
-
-                    {/* Right Side for Live Preview */}
-                    <div className="col-md-5 form-right d-flex justify-content-center align-items-center m-0 p-0">
-                        {renderTemplatePreview()}
-                    </div>
+            <div className="formDiv">
+                <div className="form-left">
+                    <form className="formComponents">
+                        {formSteps[page].component}
+                    </form>
                 </div>
+
+                <div className="form-right">
+                    {renderTemplatePreview()}
+                </div>
+            </div>
+            {/* Optional: Info message for smaller devices */}
+            <div className="d-block d-lg-none text-center text-muted mt-3">
+                <small>Live Resume preview is available on larger screens</small>
             </div>
         </div>
     );
