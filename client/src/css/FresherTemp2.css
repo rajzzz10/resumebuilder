@@ -26,8 +26,8 @@
   }
   
   .profile-image {
-    width: 150px;
-    height: 150px;
+    width: 250px;
+    height: 280px;
     margin: 0 auto 1rem;
   }
   
@@ -35,7 +35,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 50%;
+    /* border-radius: 50%; */
   }
   
   .profile-name {
@@ -53,6 +53,7 @@
   /* Right Column Styles */
   .right-column {
     background: white;
+    color: black;
     padding: 2rem;
   }
   
@@ -79,17 +80,7 @@
     background: black;
   }
   
-  /* Skills Lists */
-  .skills-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .skills-list li {
-    margin: 0.5rem 0;
-    font-size: 0.9rem;
-  }
-  
+
   /* Contact Section */
   .contact-info p {
     display: flex;
@@ -144,3 +135,34 @@
       height: 297mm;
     }
   }
+
+.black-text {
+  color: black !important;
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skills-list li {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  padding-left: 1.2em;
+  position: relative;
+}
+
+.contact-info p {
+  color: black;
+}
+.custom-list {
+  list-style-type: disc; /* Proper bullet points */
+  padding-left: 20px; /* Indent for bullets */
+  margin: 0;
+}
+
+.custom-list li {
+  margin-bottom: 5px; /* Space between list items */
+  font-size: 0.9rem;
+}

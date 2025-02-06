@@ -11,6 +11,7 @@ import Temp2 from '../templatepreviews/Temp2';
 import { useCheck } from '../context/checkContext';
 import '../css/form.css';
 import FresherTemp2 from '../templatepreviews/FresherTemp2';
+import OtherDetails from './OtherDetails';
 
 const Form = () => {
     const navigate = useNavigate();
@@ -19,37 +20,59 @@ const Form = () => {
 
     // Form State
     const [formData, setFormData] = useState({
-        personalInfo: { name: '', email: '', phone: '' },
+        personalInfo: { name: '',title: '', email: '', phone: '' },
         profSummary: { summary: '' },
         education: [{ degree: '', institution: '', year: '' }],
         experience: hasExperience ? [{ jobTitle: '', company: '', years: '' }] : [],
         certificate: hasCertification ? { title: '', issuedBy: '' } : {},
         skills: [],
+        otherDetails: { languages: [], hobbies: [] } // Now both are arrays
     });
 
     const handleChange = (section, field, value) => {
-        if (field === 'image') {
-            // The value is the Base64 string of the image
+        if (section === 'otherDetails') {
             setFormData(prevState => ({
                 ...prevState,
-                [section]: { ...prevState[section], [field]: value }
+                otherDetails: {
+                    ...prevState.otherDetails,
+                    [field]: value
+                }
+            }));
+        } else if (field === 'image') {
+            setFormData(prevState => ({
+                ...prevState,
+                [section]: { 
+                    ...prevState[section], 
+                    [field]: value 
+                }
             }));
         } else if (Array.isArray(value)) {
-            setFormData(prevState => ({ ...prevState, [section]: value }));
+            setFormData(prevState => ({ 
+                ...prevState, 
+                [section]: value 
+            }));
+        } else if (section === 'education') {
+            setFormData(prevState => ({
+                ...prevState,
+                education: value
+            }));
         } else {
             setFormData(prevState => ({
                 ...prevState,
-                [section]: { ...prevState[section], [field]: value }
+                [section]: { 
+                    ...prevState[section], 
+                    [field]: value 
+                }
             }));
         }
     };
-
     // Define form steps dynamically
     const formSteps = [
         { title: 'Personal Information', component: <PersonalInfo formData={formData.personalInfo} handleChange={handleChange} /> },
         { title: 'Professional Summary', component: <ProfSummary formData={formData.profSummary} handleChange={handleChange} /> },
         { title: 'Educational Details', component: <Education formData={formData.education} handleChange={handleChange} /> },
         { title: 'Skills', component: <Skills formData={formData.skills} handleChange={handleChange} /> },
+        { title: 'Other Details', component: <OtherDetails formData={formData.otherDetails} handleChange={handleChange} /> },
         ...(hasExperience ? [{ title: 'Professional Journey', component: <Experience formData={formData.experience} handleChange={handleChange} /> }] : []),
         ...(hasCertification ? [{ title: 'Certification', component: <Certificate formData={formData.certificate} handleChange={handleChange} /> }] : []),
     ];

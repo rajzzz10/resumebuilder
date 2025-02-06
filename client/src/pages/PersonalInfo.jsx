@@ -29,6 +29,17 @@ const PersonalInfo = ({ formData, handleChange }) => {
             <br />
             <div className="form-floating mb-3">
                 <input 
+                    type="text" 
+                    className="form-control" 
+                    id="floatingInput" 
+                    value={formData.title || ""} 
+                    onChange={(e) => handleChange('personalInfo', 'title', e.target.value)} 
+                    placeholder="name@example.com" />
+                <label htmlFor="floatingInput">Job title</label>
+            </div>
+            <br />
+            <div className="form-floating mb-3">
+                <input 
                     type="email" 
                     className="form-control" 
                     id="floatingInput" 
