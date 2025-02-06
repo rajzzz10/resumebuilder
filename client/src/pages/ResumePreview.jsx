@@ -7,6 +7,7 @@ import FresherTemp2 from '../templatepreviews/FresherTemp2';
 import '../css/resumeTemp1.css';
 import '../css/FresherTemp2.css';
 import CertTemp3 from '../templatepreviews/CertTemp3';
+import MyNavbar from './Navbar';
 
 const ResumePreview = () => {
     const location = useLocation();
@@ -53,6 +54,7 @@ const ResumePreview = () => {
 
     return (
         <>
+            <MyNavbar />
             <div className="download-btn">
                 <button className="btn btn-warning" onClick={handleDownload}>Download as PDF</button>
             </div>

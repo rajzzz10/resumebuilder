@@ -3,10 +3,12 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
+import {  useNavigate } from 'react-router-dom';
 import '../App.css';
 
 const MyNavbar = () => {
   const [isSignin, setIsSignIn] = useState(false);
+  const navigate = useNavigate;
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -14,8 +16,12 @@ const MyNavbar = () => {
   }, []); // Runs only once on mount
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    setIsSignIn(false); // Update state after logout
+    const confirmLogout = window.confirm('Are you sure you want to log out?');
+    if (confirmLogout) {
+      localStorage.removeItem('token');
+      setIsSignIn(false); // Update state after logout
+      navigate('/'); // Redirect to homepage
+    }
   };
 
   return (

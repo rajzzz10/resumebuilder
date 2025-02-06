@@ -6,13 +6,13 @@
   padding: 20px;
 }
 
-/* Form wrapper */
 .formDiv {
   display: flex;
-  gap: 30px;
+  gap: 25px;
   min-height: 600px;
   background: #fff;
-  padding: 20px;
+  width: 100%; /* Make sure it doesn't exceed the container width */
+  overflow: hidden; /* Prevent overflow */
 }
 
 /* Left side - Form */

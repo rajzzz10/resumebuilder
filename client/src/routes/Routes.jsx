@@ -15,7 +15,6 @@ import CertTemplate from '../pages/CertTemplate';
 const AppRoutes = () => {
   return (
     <BrowserRouter>
-      <MyNavbar />
       <CheckProvider>
       <Routes>
         <Route path="/" element={<Home />} />

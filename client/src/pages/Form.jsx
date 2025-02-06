@@ -12,6 +12,7 @@ import '../css/form.css';
 import FresherTemp2 from '../templatepreviews/FresherTemp2';
 import OtherDetails from './OtherDetails';
 import CertTemp3 from '../templatepreviews/CertTemp3';
+import MyNavbar from './Navbar';
 
 const Form = () => {
     const navigate = useNavigate();
@@ -102,12 +103,12 @@ const Form = () => {
                 },
                 body: JSON.stringify(formData),
             });
-    
+
             const result = await response.json();
             if (response.ok) {
                 alert('Form submitted successfully!');
                 // Pass the formData and selectedTemplate to the preview page
-                navigate('/resume-preview', { 
+                navigate('/resume-preview', {
                     state: { formData, selectedTemplate }
                 });
             } else {
@@ -117,7 +118,7 @@ const Form = () => {
             console.error('Error submitting form:', error);
         }
     };
-    
+
 
     useEffect(() => {
         console.log("Selected Templete", selectedTemplate)
@@ -157,50 +158,52 @@ const Form = () => {
         return null;
     };
 
-
     return (
-        <div className="form-container">
-            {/* Progress Bar */}
-            {/* <div className="progress-container">
+        <>
+            <MyNavbar />
+            <div className="form-container">
+                {/* Progress Bar */}
+                {/* <div className="progress-container">
                 <div className="progress-bar" style={{ width: `${(page / (formSteps.length - 1)) * 100}%` }}></div>
             </div> */}
 
 
 
-            <div className="display-3 text-center mb-4">{formSteps[page].title}</div>
+                <div className="display-3 text-center mb-4">{formSteps[page].title}</div>
 
-            {/* Top Navigation */}
-            <div className="top-nav-buttons">
-                <button onClick={prevPage} className="btn btn-dark" disabled={page === 0}>
-                    Previous
-                </button>
-                {!isLastPage ? (
-                    <button onClick={nextPage} className="btn btn-warning">
-                        Next ({formSteps[page + 1]?.title})
+                {/* Top Navigation */}
+                <div className="top-nav-buttons">
+                    <button onClick={prevPage} className="btn btn-dark" disabled={page === 0}>
+                        Previous
                     </button>
-                ) : (
-                    <button onClick={handleSubmit} className="btn btn-success">
-                        Submit
-                    </button>
-                )}
-            </div>
-
-            <div className="formDiv">
-                <div className="form-left">
-                    <form className="formComponents">
-                        {formSteps[page].component}
-                    </form>
+                    {!isLastPage ? (
+                        <button onClick={nextPage} className="btn btn-warning">
+                            Next ({formSteps[page + 1]?.title})
+                        </button>
+                    ) : (
+                        <button onClick={handleSubmit} className="btn btn-success">
+                            Submit
+                        </button>
+                    )}
                 </div>
 
-                <div className="form-right">
-                    {renderTemplatePreview()}
+                <div className="formDiv">
+                    <div className="form-left">
+                        <form className="formComponents">
+                            {formSteps[page].component}
+                        </form>
+                    </div>
+
+                    <div className="form-right">
+                        {renderTemplatePreview()}
+                    </div>
+                </div>
+                {/* Optional: Info message for smaller devices */}
+                <div className="d-block d-lg-none text-center text-muted mt-3">
+                    <small>Live Resume preview is available on larger screens</small>
                 </div>
             </div>
-            {/* Optional: Info message for smaller devices */}
-            <div className="d-block d-lg-none text-center text-muted mt-3">
-                <small>Live Resume preview is available on larger screens</small>
-            </div>
-        </div>
+        </>
     );
 };
 

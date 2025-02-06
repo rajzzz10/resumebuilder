@@ -6,6 +6,7 @@ import resumeHero3 from '../assets/resumeHero3.jpg';
 import resumeHero4 from '../assets/resumeHero4.jpg';
 import Card from 'react-bootstrap/Card';
 import Footer from './Footer';
+import MyNavbar from './Navbar';
 
 
 const Home = () => {  
@@ -23,6 +24,7 @@ const Home = () => {
 
     return (
         <>
+            <MyNavbar />
             <div className="hero-section d-flex justify-content-center align-items-center border-buttom row ">
                 <div className="hero-left p-5 text-center col-lg-6 col-md-12">
                     <div className="hero-intro pt-5 fw-normal ">Only 2% of Resume makes it past to first Round.</div><br />

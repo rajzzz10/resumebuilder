@@ -5,6 +5,7 @@ import '../css/signin.css';
 import '../App.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import MyNavbar from './Navbar';
 
 
 const Login = () => {
@@ -32,6 +33,7 @@ const Login = () => {
   }
   return (
     <>
+    <MyNavbar />
       <div className="signinPage row d-flex justify-content-evenly m-0">
         <div className="signin-section col-sm-6 d-flex justify-content-center align-items-center ">
           <div className="signinRightBox">
