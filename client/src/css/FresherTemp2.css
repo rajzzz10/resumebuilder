@@ -82,14 +82,16 @@
   
 
   /* Contact Section */
-  .contact-info p {
+  .contact-inf p {
+    color: black ;
     display: flex;
     align-items: center;
     margin: 0.5rem 0;
     font-size: 0.9rem;
   }
   
-  .contact-info i {
+  .contact-inf i {
+    padding-right: 2px;
     margin-right: 0.5rem;
   }
   
@@ -155,9 +157,6 @@
   position: relative;
 }
 
-.contact-info p {
-  color: black;
-}
 .custom-list {
   list-style-type: disc; /* Proper bullet points */
   padding-left: 20px; /* Indent for bullets */
