@@ -21,6 +21,7 @@ const ResumePreview = () => {
         if (name.includes('Fresher Template')) {
             switch (id) {
                 case 2: return <FresherTemp2 formData={formData} />;
+                case 3: return <FresherTemp3 formData={formData} />;
                 default: return null;
             }
         } else if (name.includes('Certified Template')) {

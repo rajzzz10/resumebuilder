@@ -13,18 +13,21 @@ import FresherTemp2 from '../templatepreviews/FresherTemp2';
 import OtherDetails from './OtherDetails';
 import CertTemp3 from '../templatepreviews/CertTemp3';
 import MyNavbar from './Navbar';
+import Projects from './Projects';
+import FresherTemp3 from '../templatepreviews/FresherTemp3';
 
 const Form = () => {
     const navigate = useNavigate();
     const { checkState } = useCheck();
-    const { hasExperience, hasCertification, selectedTemplate } = checkState;
+    const { hasExperience, hasCertification, selectedTemplate ,hasProject} = checkState;
 
     // Form State
     const [formData, setFormData] = useState({
         personalInfo: { name: '', title: '', email: '', phone: '', adress: '' },
         profSummary: { summary: '' },
         education: [{ degree: '', institution: '', year: '' }],
-        experience: hasExperience ? [{ jobTitle: '', company: '', years: '' }] : [],
+        projects: hasProject ? [{ name: '', startDate: '', endDate: '', description: '' }] : [],
+        experience: hasExperience ? [{ jobTitle: '', company: '', years: '', description: '' }] : [],
         certificate: hasCertification ? { title: '', issuedBy: '' } : {},
         skills: [],
         otherDetails: { languages: [], hobbies: [] } // Now both are arrays
@@ -72,6 +75,7 @@ const Form = () => {
         { title: 'Personal Information', component: <PersonalInfo formData={formData.personalInfo} handleChange={handleChange} /> },
         { title: 'Professional Summary', component: <ProfSummary formData={formData.profSummary} handleChange={handleChange} /> },
         { title: 'Educational Details', component: <Education formData={formData.education} handleChange={handleChange} /> },
+        ...(hasProject ? [{ title: 'Projects', component: <Projects formData={formData.projects} handleChange={handleChange} /> }] : []),
         { title: 'Skills', component: <Skills formData={formData.skills} handleChange={handleChange} /> },
         { title: 'Other Details', component: <OtherDetails formData={formData.otherDetails} handleChange={handleChange} /> },
         ...(hasExperience ? [{ title: 'Professional Journey', component: <Experience formData={formData.experience} handleChange={handleChange} /> }] : []),
@@ -119,12 +123,6 @@ const Form = () => {
         }
     };
 
-
-    useEffect(() => {
-        console.log("Selected Templete", selectedTemplate)
-    }, [])
-
-
     const renderTemplatePreview = () => {
         if (!selectedTemplate) return null;
 
@@ -133,7 +131,7 @@ const Form = () => {
         if (name.includes('Fresher Template')) {
             console.log("Fresher");
             switch (id) {
-                // case 1: return <FresherTemp1 />;
+                case 3: return <FresherTemp3 formData={formData} />;
                 case 2: return <FresherTemp2 formData={formData} />;
                 default: return null;
             }

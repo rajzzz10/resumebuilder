@@ -9,9 +9,9 @@ const FresherTemplate = () => {
   const navigate = useNavigate();
   
   const templates = [
-    { id: 1, name: 'Fresher Template 1', image: '/templateImages/freshers-Templates/fresherTemp1.webp', hasImage: true },
-    { id: 2, name: 'Fresher Template 2', image: '/templateImages/freshers-Templates/fresherTemp2.webp', hasImage: true },
-    { id: 3, name: 'Fresher Template 3', image: '/templateImages/freshers-Templates/fresherTemp3.webp', hasImage: true },
+    { id: 1, name: 'Fresher Template 1', image: '/templateImages/freshers-Templates/fresherTemp1.webp', hasImage: true ,hasProject: true },
+    { id: 2, name: 'Fresher Template 2', image: '/templateImages/freshers-Templates/fresherTemp2.webp', hasImage: true ,hasProject: false},
+    { id: 3, name: 'Fresher Template 3', image: '/templateImages/freshers-Templates/fresherTemp3.webp', hasImage: true, hasProject: true },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -30,7 +30,7 @@ const FresherTemplate = () => {
   };
 
   const handleTemplateSelection = (template) => {
-    updateCheckState({ hasImage: template.hasImage, selectedTemplate: template }); // Store template
+    updateCheckState({ hasImage: template.hasImage,hasProject: template.hasProject, selectedTemplate: template }); // Store template
     navigate('/form'); 
   };
 

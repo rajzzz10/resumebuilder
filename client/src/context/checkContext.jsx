@@ -15,6 +15,7 @@ export const CheckProvider = ({ children }) => {
       hasImage: false,
       hasExperience: false,
       hasCertification: false,
+      hasProject: false, // Added this field
       selectedTemplate: null,
     };
   });

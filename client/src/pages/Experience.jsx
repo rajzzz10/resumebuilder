@@ -4,7 +4,7 @@ const Experience = ({ formData, handleChange }) => {
     const [experienceFields, setExperienceFields] = useState(formData || []);
 
     const addExperience = () => {
-        setExperienceFields([...experienceFields, { role: '', company: '', stDate: '', endDate: '' }]);
+        setExperienceFields([...experienceFields, { role: '', company: '' , description : '', stDate: '', endDate: '' }]);
     };
 
     const removeExperience = (index) => {
@@ -49,6 +49,17 @@ const Experience = ({ formData, handleChange }) => {
                                     onChange={(e) => handleFieldChange(index, 'company', e.target.value)}
                                 />
                                 <label htmlFor={`company-${index}`}>Company</label>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input
+                                    id={`description-${index}`}
+                                    className="form-control"
+                                    type="text"
+                                    placeholder="description"
+                                    value={experience.description}
+                                    onChange={(e) => handleFieldChange(index, 'description', e.target.value)}
+                                />
+                                <label htmlFor={`description-${index}`}>Description</label>
                             </div>
                         </div>
                     </div>

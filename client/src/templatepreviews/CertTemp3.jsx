@@ -15,7 +15,7 @@ const CertTemp3 = ({ formData }) => {
                         <section>
                             <div className="contact-info">
                                 <h2 className="section-title">Contact</h2>
-                                <p><i className="fas fa-envelope"></i> {formData.personalInfo?.email || 'youremailaddress@mail.com'}</p>
+                                <p><i className="fas fa-envelope"></i> {formData.personalInfo?.email || 'emailaddress@mail.com'}</p>
                                 <p><i className="fas fa-phone"></i> {formData.personalInfo?.phone || '+0 123 456 789'}</p>
                                 <p><i className="fas fa-map-marker-alt"></i> {formData.personalInfo?.adress || 'Mumbai , India'}</p>
                             </div>
@@ -52,7 +52,7 @@ const CertTemp3 = ({ formData }) => {
                 <div className='right-section'>
                     {/* Header Section with Name and Job Title */}
                     <header className="resume-header">
-                        <h1 className="name">{formData.personalInfo?.name || 'YOUR NAME'}</h1>
+                        <h1 className="name fw-bolder">{formData.personalInfo?.name || 'YOUR NAME'}</h1>
                         <h3 className="job-title">{formData.personalInfo?.title || 'Professional Title'}</h3>
                     </header>
 
@@ -71,6 +71,7 @@ const CertTemp3 = ({ formData }) => {
                                     <h3>{exp.role}</h3>
                                     <p>{exp.company}</p>
                                     <p>{new Date(exp.stDate).toLocaleDateString()} - {exp.endDate ? new Date(exp.endDate).toLocaleDateString() : 'Present'}</p>
+                                    <p>{exp.description}</p>
                                 </div>
                             ))}
                         </section>

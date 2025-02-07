@@ -6,3 +6,30 @@
     height: 60%;
     width: 70%;
 }
+.btnGrpExp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.btnGrp {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    gap: 10px; /* Ensures spacing between buttons */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) { /* For tablets and below */
+    .btnGrp {
+        width: 80%; /* Increase width for better spacing */
+        flex-wrap: wrap; /* Allow buttons to wrap */
+        justify-content: center; /* Center buttons */
+    }
+
+    .btnGrp button {
+        width: 100%; /* Make buttons take full width */
+        margin-bottom: 10px; /* Add space below each button */
+    }
+}
