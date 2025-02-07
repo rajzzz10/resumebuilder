@@ -200,7 +200,7 @@ const Form = () => {
                 </div>
                 {/* Optional: Info message for smaller devices */}
                 <div className="d-block d-lg-none text-center text-muted mt-3">
-                    <small>Live Resume preview is available on larger screens</small>
+                    <small>Live Resume preview is available on larger screens but your Resume is getting ready in background . Fill all your details .</small>
                 </div>
             </div>
         </>

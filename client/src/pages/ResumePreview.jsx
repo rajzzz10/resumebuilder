@@ -8,6 +8,7 @@ import '../css/resumeTemp1.css';
 import '../css/FresherTemp2.css';
 import CertTemp3 from '../templatepreviews/CertTemp3';
 import MyNavbar from './Navbar';
+import '../css/resumePreview.css'
 import FresherTemp3 from '../templatepreviews/FresherTemp3';
 import FresherTemp1 from '../templatepreviews/FresherTemp1';
 
@@ -60,14 +61,14 @@ const ResumePreview = () => {
         <>
             <MyNavbar />
             <div className="download-btn">
-                <button className="btn btn-warning" onClick={handleDownload}>Download as PDF</button>
+                <button className="btn btn-warning mb-3" onClick={handleDownload}>Download as PDF</button>
             </div>
-            <div className="resume-container">
+            <div className="resume-container ">
                 <div>
                     {renderTemplatePreview()}
                 </div>
-
             </div>
+            
         </>
     );
 };
