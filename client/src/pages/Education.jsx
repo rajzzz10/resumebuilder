@@ -81,7 +81,9 @@ const Education = ({ formData, handleChange }) => {
           >
             Remove
           </button>
+          <hr />
         </div>
+        
       ))}
       {/* Add Education Button */}
       <button

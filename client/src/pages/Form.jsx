@@ -15,6 +15,7 @@ import CertTemp3 from '../templatepreviews/CertTemp3';
 import MyNavbar from './Navbar';
 import Projects from './Projects';
 import FresherTemp3 from '../templatepreviews/FresherTemp3';
+import FresherTemp1 from '../templatepreviews/FresherTemp1';
 
 const Form = () => {
     const navigate = useNavigate();
@@ -131,8 +132,9 @@ const Form = () => {
         if (name.includes('Fresher Template')) {
             console.log("Fresher");
             switch (id) {
-                case 3: return <FresherTemp3 formData={formData} />;
+                case 1: return <FresherTemp1 formData={formData} />;
                 case 2: return <FresherTemp2 formData={formData} />;
+                case 3: return <FresherTemp3 formData={formData} />;
                 default: return null;
             }
         }

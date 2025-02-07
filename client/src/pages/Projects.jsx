@@ -85,6 +85,7 @@ const Projects = ({ formData, handleChange }) => {
           >
             Remove
           </button>
+          <hr />
         </div>
       ))}
       {/* Add Project Button */}

@@ -17,7 +17,7 @@
 
 /* Left side - Form */
 .form-left {
-  flex: 0 0 40%;
+  flex: 0 0 32%;
   padding: 25px 0 25px 25px;
 }
 
@@ -27,8 +27,8 @@
 
 /* Right side - Preview */
 .form-right {
-  flex: 0 0 60%;
-  padding: 25px 25px 25px 0;
+  flex: 0 0 68%;
+  padding: 25px 0 0 0;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -41,7 +41,6 @@
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid #e0e0e0;
-  padding: 20px;
 }
 
 /* Navigation buttons */

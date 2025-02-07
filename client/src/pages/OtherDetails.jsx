@@ -55,7 +55,7 @@ const OtherDetails = ({ formData, handleChange }) => {
       </div>
 
       {/* Display Added Languages */}
-      <div className="language-buttons">
+      <div className="language-buttons d-flex flex-wrap gap-2">
         {formData.languages.map((language, index) => (
           <button
             key={index}
@@ -87,7 +87,7 @@ const OtherDetails = ({ formData, handleChange }) => {
       </div>
 
       {/* Display Added Hobbies */}
-      <div className="hobby-buttons">
+      <div className="hobby-buttons d-flex flex-wrap gap-2">
         {formData.hobbies.map((hobby, index) => (
           <button
             key={index}

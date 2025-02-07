@@ -1,128 +1,157 @@
-.F3resume-containerF3 {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    min-height: 297mm;
-    width: 210mm;
-    margin: 0 auto;
-    background: white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
 
-  
-  
-  .F3left-sectionF3 {
-    background: #1a237e;
-    color: white;
-    padding: 2rem;
+.F3resume-container {
+  display: grid;
+  grid-template-columns: 66% 34%;
+  min-height: 297mm;
+  width: 210mm;
+  margin: 0 auto;
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.F3left-section {
+  padding: 2rem;
+  background: white;
+}
+
+.F3right-section {
+  background: #1a237e;
+  color: white;
+  padding: 2rem;
+}
+
+.F3photo-container {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 2rem;
+  border: 4px solid white;
+  overflow: hidden;
+}
+
+.F3profile-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.F3header {
+  margin-bottom: 2rem;
+}
+
+.F3name {
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+  color: #1a237e;
+}
+
+.F3job-title {
+  font-size: 1.5rem;
+  color: #455a64;
+  margin: 0;
+}
+
+.F3section-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid currentColor;
+}
+
+.F3right-section .F3section-title {
+  color: white;
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+
+.F3contact-info p {
+  margin-bottom: 2rem;
+  align-items: center;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+.fas {
+  padding-right: 2px;
+}
+
+.F3contact-item {
+  margin-bottom: 0.5rem;
+ 
+}
+
+.F3list-unstyled {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.F3list-unstyled li {
+  margin-bottom: 0.5rem;
+}
+
+.F3education-item, .F3project-item {
+  margin-bottom: 1.5rem;
+}
+
+.F3education-item h4, .F3project-item h4 {
+  color: #1a237e;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.F3institution, .F3project-description {
+  color: #455a64;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+.F3education-date, .F3project-date {
+  color: #78909c;
+  font-size: 0.9rem;
+  margin: 0.25rem 0;
+}
+
+.F3skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+}
+
+.F3skills-list li {
+  background: #e3f2fd;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  color: #1a237e;
+  text-align: center;
+}
+
+.F3summary p {
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.F3projects hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 1rem 0;
+}
+
+@media print {
+  .F3resume-container {
+    box-shadow: none;
   }
-  
-  .F3right-section {
-    padding: 2rem;
-    background: white;
-  }
-  
-  .F3photo-containerF3 {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto 2rem;
-    border: 5px solid white;
-    overflow: hidden;
-  }
-  
-  .F3profile-photo {
+}
+
+@media (max-width: 768px) {
+  .F3resume-container {
+    grid-template-columns: 1fr;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .F3section-title {
-    font-size: 1.5rem;
-    color: inherit;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid currentColor;
-  }
-  
-  .F3contact-info {
-    margin-bottom: 2rem;
-  }
-  
-  .F3contact-item {
-    margin-bottom: 0.5rem;
-  }
-  
-  .F3contact-label {
-    font-weight: bold;
-    margin-right: 0.5rem;
-  }
-  
-  .F3list-unstyled {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 2rem 0;
-  }
-  
-  .F3list-unstyled li {
-    margin-bottom: 0.5rem;
-  }
-  
-  .F3name {
-    font-size: 2.5rem;
-    margin: 0 0 0.5rem 0;
-    color: #1a237e;
-  }
-  
-  .F3job-title {
-    font-size: 1.5rem;
-    color: #455a64;
-    margin: 0 0 2rem 0;
-  }
-  
-  .F3education-item {
-    margin-bottom: 1.5rem;
-  }
-  
-  .F3education-item h4 {
-    color: #1a237e;
-    margin: 0 0 0.5rem 0;
-  }
-  
-  .F3institution {
-    color: #455a64;
-    margin: 0 0 0.25rem 0;
-  }
-  
-  .F3education-date {
-    color: #78909c;
-    font-size: 0.9rem;
-    margin: 0;
   }
   
   .F3skills-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
   }
-  
-  .F3skills-list li {
-    background: #e3f2fd;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    color: #1a237e;
-  }
-  
-  @media print {
-    .F3resume-containerF3 {
-      box-shadow: none;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .F3resume-containerF3 {
-      grid-template-columns: 1fr;
-      width: 100%;
-    }
-  }
+}

@@ -42,7 +42,7 @@ const Skills = ({ formData, handleChange }) => {
           Add Skill
         </button>
       </div>
-      <div className="skill-buttons">
+      <div className="skill-buttons d-flex flex-wrap gap-2">
         {skills.map((skill, index) => (
           <button
             key={index}
@@ -50,7 +50,7 @@ const Skills = ({ formData, handleChange }) => {
             className="btn btn-danger mt-2"
             onClick={() => removeSkill(skill)}
           >
-            {skill} <span>X</span> 
+            {skill} <span>X</span>
           </button>
         ))}
       </div>
