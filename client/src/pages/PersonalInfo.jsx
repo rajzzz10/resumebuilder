@@ -23,8 +23,9 @@ const PersonalInfo = ({ formData, handleChange }) => {
                     id="floatingInput" 
                     value={formData.name || ""} 
                     onChange={(e) => handleChange('personalInfo', 'name', e.target.value)} 
-                    placeholder="name@example.com" />
-                <label htmlFor="floatingInput">Name</label>
+                    placeholder="name@example.com" 
+                    required/>
+                <label htmlFor="floatingInput">Name <span className='red'>*</span></label>
             </div>
             <br />
             <div className="form-floating mb-3">
@@ -34,8 +35,9 @@ const PersonalInfo = ({ formData, handleChange }) => {
                     id="floatingInput" 
                     value={formData.title || ""} 
                     onChange={(e) => handleChange('personalInfo', 'title', e.target.value)} 
-                    placeholder="name@example.com" />
-                <label htmlFor="floatingInput">Job title</label>
+                    placeholder="name@example.com" 
+                    required/>
+                <label htmlFor="floatingInput">Job title <span className='red'>*</span></label>
             </div>
             <br />
             <div className="form-floating mb-3">
@@ -45,8 +47,8 @@ const PersonalInfo = ({ formData, handleChange }) => {
                     id="floatingInput" 
                     value={formData.email || ""} 
                     onChange={(e) => handleChange('personalInfo', 'email', e.target.value)} 
-                    placeholder="name@example.com" />
-                <label htmlFor="floatingInput">Email address</label>
+                    placeholder="name@example.com" required/>
+                <label htmlFor="floatingInput">Email address <span className='red'>*</span></label>
             </div>
             <br />
             <div className="form-floating mb-3">
@@ -56,8 +58,8 @@ const PersonalInfo = ({ formData, handleChange }) => {
                     id="floatingInput" 
                     value={formData.phone || ""} 
                     onChange={(e) => handleChange('personalInfo', 'phone', e.target.value)} 
-                    placeholder="name@example.com" />
-                <label htmlFor="floatingInput">Mobile no</label>
+                    placeholder="name@example.com" required/>
+                <label htmlFor="floatingInput">Mobile no <span className='red'>*</span></label>
             </div>
             <br />
             <div className="form-floating mb-3">
@@ -67,8 +69,8 @@ const PersonalInfo = ({ formData, handleChange }) => {
                     id="floatingInput" 
                     value={formData.adress || ""} 
                     onChange={(e) => handleChange('personalInfo', 'adress', e.target.value)} 
-                    placeholder="name@example.com" />
-                <label htmlFor="floatingInput">Address</label>
+                    placeholder="name@example.com" required/>
+                <label htmlFor="floatingInput">Address <span className='red'>*</span></label>
             </div>
             <br />
             {/* Conditionally render the image input field */}
@@ -79,7 +81,7 @@ const PersonalInfo = ({ formData, handleChange }) => {
                         className="form-control" 
                         id="floatingInputImage" 
                         accept="image/*"
-                        onChange={handleImageChange} // Handle image input change
+                        onChange={handleImageChange}// Handle image input change
                     />
                     <label htmlFor="floatingInputImage">Upload your photo</label>
                 </div>

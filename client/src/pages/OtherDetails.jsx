@@ -47,7 +47,7 @@ const OtherDetails = ({ formData, handleChange }) => {
             onChange={(e) => setLanguage(e.target.value)} // Update the local state
             placeholder="Add a Language"
           />
-          <label htmlFor="language-input">Add a Language</label>
+          <label htmlFor="language-input">Add a Language <span className='red'>*</span></label>
         </div>
         <button type="button" className="btn btn-success mt-2" onClick={addLanguage}>
           Add Language
@@ -79,7 +79,7 @@ const OtherDetails = ({ formData, handleChange }) => {
             onChange={(e) => setHobby(e.target.value)} // Update the local state
             placeholder="Add a Hobby"
           />
-          <label htmlFor="hobby-input">Add a Hobby</label>
+          <label htmlFor="hobby-input">Add a Hobby <span className='red'>*</span></label>
         </div>
         <button type="button" className="btn btn-success mt-2" onClick={addHobby}>
           Add Hobby

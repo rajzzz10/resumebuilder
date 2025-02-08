@@ -37,7 +37,7 @@ const Education = ({ formData, handleChange }) => {
                   value={education.degree}
                   onChange={(e) => handleFieldChange(index, 'degree', e.target.value)}
                 />
-                <label htmlFor={`degree-${index}`}>Degree</label>
+                <label htmlFor={`degree-${index}`}>Degree <span className='red'>*</span></label>
               </div>
               <div className="form-floating mb-3">
                 <input
@@ -48,14 +48,14 @@ const Education = ({ formData, handleChange }) => {
                   value={education.institution}
                   onChange={(e) => handleFieldChange(index, 'institution', e.target.value)}
                 />
-                <label htmlFor={`institution-${index}`}>Institution</label>
+                <label htmlFor={`institution-${index}`}>Institution <span className='red'>*</span></label>
               </div>
             </div>
           </div>
           {/* Start Year and End Year - Second row */}
           <div className="row">
             <div className="col-sm-6">
-              <label>Start Year</label>
+              <label>Start Year <span className='red'>*</span></label>
               <input
                 type="date"
                 className="form-control"
@@ -64,7 +64,7 @@ const Education = ({ formData, handleChange }) => {
               />
             </div>
             <div className="col-sm-6">
-              <label>End Year</label>
+              <label>End Year </label>
               <input
                 type="date"
                 className="form-control"

@@ -32,7 +32,7 @@ const Skills = ({ formData, handleChange }) => {
             value={skillInput}
             onChange={(e) => setSkillInput(e.target.value)}
           />
-          <label htmlFor="skill-input">Add a Skill</label>
+          <label htmlFor="skill-input">Add a Skill <span className='red'>*</span></label>
         </div>
         <button
           type="button"

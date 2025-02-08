@@ -88,7 +88,7 @@ const ProfSummary = ({ formData, handleChange }) => {
                         onChange={(e) => setJobRole(e.target.value)}
                         placeholder="Enter your job role"
                     />
-                    <label htmlFor="jobRoleInput">Job Role</label>
+                    <label htmlFor="jobRoleInput">Job Role </label>
                 </div>
                 <button
                     className={`btn ${isLoading ? 'btn-secondary' : 'btn-primary'}`}
@@ -127,7 +127,7 @@ const ProfSummary = ({ formData, handleChange }) => {
                     onChange={(e) => handleChange('profSummary', 'summary', e.target.value)}
                     placeholder="Enter your professional summary here"
                 ></textarea>
-                <label htmlFor="floatingTextarea">Professional Summary</label>
+                <label htmlFor="floatingTextarea">Professional Summary <span className='red'>*</span></label>
             </div>
         </div>
     );

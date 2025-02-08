@@ -99,7 +99,26 @@ const Form = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form Data:', formData);
+    
+        // Extracting values for validation
+        const { personalInfo, education, skills, otherDetails } = formData;
+        const { name, email, phone, adress } = personalInfo;
+    
+        // Validation checks
+        if (
+            !name.trim() || 
+            !email.trim() || 
+            !phone.trim() || 
+            !adress.trim() || 
+            education.length === 0 || 
+            skills.length === 0 || 
+            otherDetails.languages.length === 0 || 
+            otherDetails.hobbies.length === 0
+        ) {
+            alert('Please fill all required fields (*) before submitting.');
+            return; // Stop submission if validation fails
+        }
+    
         try {
             const response = await fetch('http://localhost:5000/api/form', {
                 method: 'POST',
@@ -108,11 +127,10 @@ const Form = () => {
                 },
                 body: JSON.stringify(formData),
             });
-
+    
             const result = await response.json();
             if (response.ok) {
                 alert('Form submitted successfully!');
-                // Pass the formData and selectedTemplate to the preview page
                 navigate('/resume-preview', {
                     state: { formData, selectedTemplate }
                 });
@@ -130,7 +148,6 @@ const Form = () => {
         const { id, name } = selectedTemplate;
 
         if (name.includes('Fresher Template')) {
-            console.log("Fresher");
             switch (id) {
                 case 1: return <FresherTemp1 formData={formData} />;
                 case 2: return <FresherTemp2 formData={formData} />;
@@ -140,7 +157,6 @@ const Form = () => {
             }
         }
         else if (name.includes('Experienced Template')) {
-            console.log("Experienced");
             // switch (id) {
             //     case 1: return <MidTemp1 />;
             //     case 2: return <MidTemp2 />;
@@ -148,7 +164,6 @@ const Form = () => {
             // }
         }
         else if (name.includes('Certified Template')) {
-            console.log("Certified");
             switch (id) {
                 case 3: return <CertTemp3 formData={formData} />;
                 // case 2: return <ExpTemp2 />;
