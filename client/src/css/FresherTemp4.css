@@ -1,0 +1,150 @@
+.F4-container {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    min-height: 297mm;
+    width: 210mm;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .F4-left-section {
+    background: #2c3e50;
+    color: white;
+    padding: 2rem;
+  }
+  
+  .F4-right-section {
+    background: white;
+    padding: 2rem;
+  }
+  
+  .F4-photo-container {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 2rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid white;
+  }
+  
+  .F4-profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .F4-section {
+    margin-bottom: 2rem;
+  }
+  
+  .F4-section-title {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .F4-left-section .F4-section-title {
+    color: white;
+  }
+  
+  .F4-right-section .F4-section-title {
+    color: #2c3e50;
+  }
+  
+  .F4-icon {
+    width: 20px;
+  }
+  
+  .F4-icon-small {
+    width: 16px;
+    margin-right: 0.5rem;
+  }
+  
+  .F4-header {
+    margin-bottom: 2.5rem;
+  }
+  
+  .F4-name {
+    font-size: 2.5rem;
+    margin: 0;
+    color: #2c3e50;
+  }
+  
+  .F4-title {
+    font-size: 1.5rem;
+    color: #7f8c8d;
+    margin: 0.5rem 0 0 0;
+  }
+  
+  .F4-contact-details p {
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .F4-skills, .F4-languages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .F4-skill-tag, .F4-hobby-tag {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+  
+  .F4-language-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .F4-education-item, .F4-project-item {
+    margin-bottom: 1.5rem;
+  }
+  
+  .F4-education-item h4, .F4-project-item h4 {
+    color: #2c3e50;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+  }
+  
+  .F4-institution, .F4-description {
+    color: #7f8c8d;
+    margin: 0.25rem 0;
+    line-height: 1.6;
+  }
+  
+  .F4-year, .F4-date {
+    color: #95a5a6;
+    font-size: 0.9rem;
+    margin: 0.25rem 0;
+  }
+  
+  .F4-about {
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  @media print {
+    .F4-container {
+      box-shadow: none;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .F4-container {
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
+  }

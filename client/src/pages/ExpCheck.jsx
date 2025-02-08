@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCheck } from '../context/checkContext'; // Import the context
 import '../css/expCheck.css';
 import MyNavbar from './Navbar';
+import Footer from './Footer';
 
 const ExpCheck = () => {
   const { updateCheckState } = useCheck(); // Access context
@@ -90,6 +91,7 @@ const ExpCheck = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

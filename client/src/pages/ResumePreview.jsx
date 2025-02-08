@@ -2,15 +2,15 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import Temp1 from '../templatepreviews/temp1';
 import FresherTemp2 from '../templatepreviews/FresherTemp2';
 import '../css/resumeTemp1.css';
 import '../css/FresherTemp2.css';
 import CertTemp3 from '../templatepreviews/CertTemp3';
 import MyNavbar from './Navbar';
 import '../css/resumePreview.css'
-import FresherTemp3 from '../templatepreviews/FresherTemp3';
+import FresherTemp3 from '../templatepreviews/FresherTemp4';
 import FresherTemp1 from '../templatepreviews/FresherTemp1';
+import FresherTemp4 from '../templatepreviews/FresherTemp4';
 
 const ResumePreview = () => {
     const location = useLocation();
@@ -25,7 +25,8 @@ const ResumePreview = () => {
             switch (id) {
                 case 1: return <FresherTemp1 formData={formData} />;
                 case 2: return <FresherTemp2 formData={formData} />;
-                case 3: return <FresherTemp3 formData={formData} />;
+                case 3: return <FresherTemp4 formData={formData} />;
+                case 4: return <FresherTemp3 formData={formData} />;
                 default: return null;
             }
         } else if (name.includes('Certified Template')) {

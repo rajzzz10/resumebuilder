@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { useCheck } from '../context/checkContext'; 
+import { useCheck } from '../context/checkContext';
 import '../css/chooseTemp.css';
+import MyNavbar from './Navbar';
+import Footer from './Footer';
 
 const FresherTemplate = () => {
   const { updateCheckState } = useCheck();
   const navigate = useNavigate();
-  
+
   const templates = [
-    { id: 1, name: 'Fresher Template 1', image: '/templateImages/freshers-Templates/fresherTemp1.webp', hasImage: true ,hasProject: true },
-    { id: 2, name: 'Fresher Template 2', image: '/templateImages/freshers-Templates/fresherTemp2.webp', hasImage: true ,hasProject: false},
-    { id: 3, name: 'Fresher Template 3', image: '/templateImages/freshers-Templates/fresherTemp3.webp', hasImage: true, hasProject: true },
+    { id: 1, name: 'Fresher Template 1', image: '/templateImages/freshers-Templates/fresherTemp1.webp', hasImage: true, hasProject: true },
+    { id: 2, name: 'Fresher Template 2', image: '/templateImages/freshers-Templates/fresherTemp2.webp', hasImage: true, hasProject: false },
+    { id: 3, name: 'Fresher Template 3', image: '/templateImages/freshers-Templates/FresherTemp4.jpg', hasImage: true, hasProject: true },
+    { id: 4, name: 'Fresher Template 4', image: '/templateImages/freshers-Templates/fresherTemp3.webp', hasImage: true, hasProject: true },
+
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -30,8 +34,8 @@ const FresherTemplate = () => {
   };
 
   const handleTemplateSelection = (template) => {
-    updateCheckState({ hasImage: template.hasImage,hasProject: template.hasProject, selectedTemplate: template }); // Store template
-    navigate('/form'); 
+    updateCheckState({ hasImage: template.hasImage, hasProject: template.hasProject, selectedTemplate: template }); // Store template
+    navigate('/form');
   };
 
   return (

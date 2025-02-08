@@ -6,7 +6,6 @@ import Experience from './Experience';
 import Certificate from './Certificate';
 import ProfSummary from './ProfSummary';
 import Skills from './Skills';
-import Temp1 from '../templatepreviews/temp1';
 import { useCheck } from '../context/checkContext';
 import '../css/form.css';
 import FresherTemp2 from '../templatepreviews/FresherTemp2';
@@ -16,6 +15,7 @@ import MyNavbar from './Navbar';
 import Projects from './Projects';
 import FresherTemp3 from '../templatepreviews/FresherTemp3';
 import FresherTemp1 from '../templatepreviews/FresherTemp1';
+import FresherTemp4 from '../templatepreviews/FresherTemp4';
 
 const Form = () => {
     const navigate = useNavigate();
@@ -134,7 +134,8 @@ const Form = () => {
             switch (id) {
                 case 1: return <FresherTemp1 formData={formData} />;
                 case 2: return <FresherTemp2 formData={formData} />;
-                case 3: return <FresherTemp3 formData={formData} />;
+                case 3: return <FresherTemp4 formData={formData} />;
+                case 4: return <FresherTemp3 formData={formData} />;
                 default: return null;
             }
         }

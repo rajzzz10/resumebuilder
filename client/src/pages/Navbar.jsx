@@ -8,7 +8,7 @@ import '../App.css';
 
 const MyNavbar = () => {
   const [isSignin, setIsSignIn] = useState(false);
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('token');

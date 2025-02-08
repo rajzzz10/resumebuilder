@@ -26,6 +26,7 @@ const Login = () => {
       // Store token in localStorage
       localStorage.setItem("token", response.data.token);
       alert(response.data.message);
+      navigate("/")
     } catch (e) {
       alert(e.response?.data?.message || "Login Failed");
     }
