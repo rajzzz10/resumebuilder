@@ -19,6 +19,7 @@ import FresherTemp4 from '../templatepreviews/FresherTemp4';
 import NoTemplates from './NoTemplates';
 import ExpTemp1 from '../templatepreviews/ExpTemp1';
 import ExpTemp3 from '../templatepreviews/ExpTemp3';
+import ExpTemp2 from '../templatepreviews/ExpTemp2';
 
 const Form = () => {
     const navigate = useNavigate();
@@ -162,6 +163,7 @@ const Form = () => {
         else if (name.includes('Experienced Template')) {
             switch (id) {
                 case 1: return <ExpTemp1 formData={formData}  />;
+                case 2: return <ExpTemp2 formData={formData}  />;
                 case 3: return <ExpTemp3 formData={formData} />;
                 default: return <NoTemplates/>;
             }

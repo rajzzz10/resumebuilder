@@ -10,10 +10,10 @@ const ExpTemplate = () => {
 
   const templates = [
     { id: 1, name: 'Experienced Template 1', image: '/templateImages/experienced-Templates/expTemp1.jpg', hasImage: true , hasProject: false},
-    { id: 2, name: 'Experienced Template 2', image: '/templateImages/experienced-Templates/expTemp2.webp', hasImage: false, hasProject: false  },
+    { id: 2, name: 'Experienced Template 2', image: '/templateImages/experienced-Templates/expTemp2.jpg', hasImage: true, hasProject: false  },
     { id: 3, name: 'Experienced Template 3', image: '/templateImages/experienced-Templates/expTemp7.jpg', hasImage: true, hasProject: false  },
     { id: 4, name: 'Experienced Template 4', image: '/templateImages/experienced-Templates/expTemp4.jpg', hasImage: true , hasProject: false },
-    { id: 5, name: 'Experienced Template 5', image: '/templateImages/experienced-Templates/expTemp5.jpg', hasImage: true , hasProject: false },
+    { id: 5, name: 'Experienced Template 5', image: '/templateImages/experienced-Templates/expTemp5.webp', hasImage: true , hasProject: false },
     { id: 6, name: 'Experienced Template 6', image: '/templateImages/experienced-Templates/expTemp6.jpg', hasImage: true , hasProject: false },
   ];
 
