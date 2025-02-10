@@ -31,10 +31,9 @@ const CertTemplate = () => {
   };
 
   const handleTemplateSelection = (template) => {
-    updateCheckState({ hasImage: template.hasImage, selectedTemplate: template });
+    updateCheckState({ hasImage: template.hasImage, hasProject: template.hasProject, selectedTemplate: template }); // Store template
     navigate('/form');
   };
-
   return (
     <Container className="d-flex flex-column align-items-center py-4">
       <h2 className="text-center mb-3 text-warning fw-bolder">Choose an Expert Resume Template</h2>

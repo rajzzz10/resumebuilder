@@ -43,7 +43,7 @@ const Home = () => {
                 <div className="feature-head text-center p-3 display-4  fw-medium border-dark">Create your Resume in minutes</div>
                 <div className="features pt-4 d-flex justify-content-around row row-cols-1 row-cols-sm-2 row-cols-md-4">
                     <div className="feature1 mb-3">
-                        <Card style={{ minWidth: '23vw', maxWidth: 'fit-content', height: 'fit-content', border: 'none', borderRadius: '10%', padding: '0', margin: '0' }}>
+                        <Card style={{ minWidth: '23vw', maxWidth: 'fit-content', height: 'fit-content', border: 'none', borderRadius: '10%', padding: '0', margin: '0' , boxShadow:'0 2px 2px'}}>
                             <Card.Body>
                                 <Card.Title className='text-center display-6 yellow' ><i className="fa-solid fa-rocket"></i></Card.Title>
                                 <Card.Title className='text-center display-5 fw-normal'>Effortless</Card.Title>
@@ -54,7 +54,7 @@ const Home = () => {
                         </Card>
                     </div>
                     <div className="feature2  mb-3">
-                        <Card style={{ minWidth: '23vw', maxWidth: 'fit-content', height: 'fit-content', border: 'none', borderRadius: '10%' }}>
+                        <Card style={{ minWidth: '23vw', maxWidth: 'fit-content', height: 'fit-content', border: 'none', borderRadius: '10%' , boxShadow:'0 2px 2px'}}>
                             <Card.Body>
                                 <Card.Title className='text-center display-6 yellow' ><i className="fa-solid fa-puzzle-piece"></i></Card.Title>
                                 <Card.Title className='text-center display-5 fw-normal'>Relevant</Card.Title>
@@ -65,7 +65,7 @@ const Home = () => {
                         </Card>
                     </div>
                     <div className="feature3  mb-3">
-                        <Card style={{ minWidth: '23vw', maxWidth: 'fit-content', height: 'fit-content', border: 'none', borderRadius: '10%' }}>
+                        <Card style={{ minWidth: '23vw', maxWidth: 'fit-content', height: 'fit-content', border: 'none', borderRadius: '10%' , boxShadow:'0 2px 2px' }}>
                             <Card.Body>
                                 <Card.Title className='text-center display-6 yellow' ><i className="fa-solid fa-lightbulb"></i></Card.Title>
                                 <Card.Title className='text-center display-5 fw-normal'>Modern</Card.Title>

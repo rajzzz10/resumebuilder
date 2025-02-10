@@ -16,6 +16,8 @@ import Projects from './Projects';
 import FresherTemp3 from '../templatepreviews/FresherTemp3';
 import FresherTemp1 from '../templatepreviews/FresherTemp1';
 import FresherTemp4 from '../templatepreviews/FresherTemp4';
+import NoTemplates from './NoTemplates';
+import ExpTemp1 from '../templatepreviews/ExpTemp1';
 
 const Form = () => {
     const navigate = useNavigate();
@@ -157,21 +159,21 @@ const Form = () => {
             }
         }
         else if (name.includes('Experienced Template')) {
-            // switch (id) {
-            //     case 1: return <MidTemp1 />;
-            //     case 2: return <MidTemp2 />;
-            //     default: return null;
-            // }
+            switch (id) {
+                case 1: return <ExpTemp1 formData={formData}  />;
+                // case 2: return <MidTemp2 />;
+                default: return <NoTemplates/>;
+            }
         }
         else if (name.includes('Certified Template')) {
             switch (id) {
                 case 3: return <CertTemp3 formData={formData} />;
                 // case 2: return <ExpTemp2 />;
-                default: return null;
+                default: return  <NoTemplates/>;;
             }
         }
 
-        return null;
+        return  <NoTemplates/>;;
     };
 
     return (

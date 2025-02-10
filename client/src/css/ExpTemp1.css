@@ -1,0 +1,181 @@
+.E1-container {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    min-height: 297mm;
+    width: 210mm;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .E1-left-section {
+    background: #2B579A;
+    color: white;
+    padding: 2rem;
+  }
+  
+  .E1-right-section {
+    background: white;
+    padding: 2rem;
+  }
+  
+  .E1-photo-container {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 2rem;
+    overflow: hidden;
+  }
+  
+  .E1-profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .E1-name {
+    font-size: 2rem;
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+  .E1-title {
+    font-size: 1rem;
+    margin: 0.5rem 0 2rem;
+    text-align: center;
+    font-weight: normal;
+  }
+  
+  .E1-section {
+    margin-bottom: 2rem;
+  }
+  
+  .E1-section-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid currentColor;
+  }
+  
+  .E1-right-section .E1-section-header {
+    background: #2B579A;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .E1-right-section .E1-section-title {
+    color: white;
+    margin: 0;
+    border: none;
+  }
+  
+  .E1-icon {
+    width: 20px;
+    margin-right: 1rem;
+  }
+  
+  .E1-contact-details {
+    margin-top: 1rem;
+  }
+  
+  .E1-contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem;
+  }
+  
+  .E1-contact-item p {
+    margin: 0;
+  }
+  
+  .E1-profile-text {
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  .E1-hobbies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .E1-hobby-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+  
+  .E1-experience-item, .E1-education-item {
+    margin-bottom: 1.5rem;
+  }
+  
+  .E1-experience-item h4, .E1-education-item h4 {
+    color: #2B579A;
+    margin: 0;
+    font-size: 1.1rem;
+  }
+  
+  .E1-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0.25rem 0;
+  }
+  
+  .E1-company, .E1-degree {
+    color: #333;
+    margin: 0.25rem 0;
+    font-weight: 500;
+  }
+  
+  .E1-description {
+    color: #666;
+    margin: 0.5rem 0;
+    line-height: 1.6;
+  }
+  
+  .E1-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .E1-skill-item {
+    background: #f0f0f0;
+    color: #2B579A;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+  
+  .E1-languages {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .E1-language-item {
+    color: #333;
+    font-size: 0.9rem;
+  }
+  
+  .E1-language-level {
+    color: #666;
+  }
+  
+  @media print {
+    .E1-container {
+      box-shadow: none;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .E1-container {
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
+    
+    .E1-languages {
+      grid-template-columns: 1fr;
+    }
+  }

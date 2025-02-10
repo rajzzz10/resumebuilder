@@ -11,6 +11,8 @@ import '../css/resumePreview.css'
 import FresherTemp3 from '../templatepreviews/FresherTemp4';
 import FresherTemp1 from '../templatepreviews/FresherTemp1';
 import FresherTemp4 from '../templatepreviews/FresherTemp4';
+import ExpTemp1 from '../templatepreviews/ExpTemp1';
+import NoTemplates from './NoTemplates';
 
 const ResumePreview = () => {
     const location = useLocation();
@@ -29,10 +31,17 @@ const ResumePreview = () => {
                 case 4: return <FresherTemp3 formData={formData} />;
                 default: return null;
             }
-        } else if (name.includes('Certified Template')) {
+        } else if (name.includes('Experienced Template')) {
+            switch (id) {
+                case 1: return <ExpTemp1 formData={formData}  />;
+                // case 2: return <MidTemp2 />;
+                default: return <NoTemplates/>;
+            }
+        } 
+        else if (name.includes('Certified Template')) {
             switch (id) {
                 case 3: return <CertTemp3 formData={formData} />;
-                default: return null;
+                default: return <NoTemplates/>;
             }
         }
 
