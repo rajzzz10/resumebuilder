@@ -46,10 +46,10 @@ const ExpCheck = () => {
     <>
       <MyNavbar />
       <div className='d-flex justify-content-center align-items-center workExpdiv'>
-        <div className="workExp">
+        <div className="workExp pt-5">
           <div className="expLogo text-center"><i className="fa-solid fa-briefcase fa-2xl " style={{ color: 'black' }}></i></div>
           <div className="text-center display-6 fw-bold pt-4">What's your level of professional experience?</div>
-          <div className="expQn h4 text-center">Share your background to get tailored guidance.</div>
+          <div className="expQn text-center">Share your background to get tailored guidance.</div>
 
           <div className="btnGrpExp p-4 d-flex justify-content-center align-items-center w-100">
             <div className="btnGrp d-flex justify-content-around w-50">

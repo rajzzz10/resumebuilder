@@ -41,13 +41,15 @@
     width: 100%;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 768px) {
     .hero-section{
         height: 90vh;
     }
     .hero-right{
+        padding: 0 !important;
         height: 50vh;
         width: 100%;
+        margin-top: 10%;
     }
     .hero-left{
         height: 40vh;
@@ -56,8 +58,9 @@
         padding: 0;
     }
     .hero-right-pic{
-        margin-top: 5vh;
-        max-width: 70vw;
+        width: 100%;
+        margin-left: 0 !important;
+        padding-top: 20%;
     }
     .hero-btn{
         margin: 0;

@@ -51,9 +51,10 @@ const Experience = ({ formData, handleChange }) => {
                                 <label htmlFor={`company-${index}`}>Company</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input
+                                <textarea
                                     id={`description-${index}`}
                                     className="form-control"
+                                    style={{height:'100px'}}
                                     type="text"
                                     placeholder="description"
                                     value={experience.description}

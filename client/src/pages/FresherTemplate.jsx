@@ -21,7 +21,7 @@ const FresherTemplate = () => {
   // Adjust number of templates based on screen size
   useEffect(() => {
     const updateTemplatesToShow = () => {
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 770) {
         setTemplatesToShow(1);
       } else {
         setTemplatesToShow(3);

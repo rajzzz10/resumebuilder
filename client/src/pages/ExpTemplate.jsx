@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useCheck } from '../context/checkContext';
@@ -18,7 +18,24 @@ const ExpTemplate = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const templatesToShow = 3;
+  const [templatesToShow, setTemplatesToShow] = useState(3);
+  // Adjust number of templates based on screen size
+    useEffect(() => {
+      const updateTemplatesToShow = () => {
+        if (window.innerWidth < 770) {
+          setTemplatesToShow(1);
+        } else {
+          setTemplatesToShow(3);
+        }
+      };
+  
+      updateTemplatesToShow();
+      window.addEventListener('resize', updateTemplatesToShow);
+  
+      return () => {
+        window.removeEventListener('resize', updateTemplatesToShow);
+      };
+    }, []);
 
   const handlePrev = () => {
     if (currentIndex > 0) {

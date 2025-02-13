@@ -28,6 +28,7 @@ app.use('/api', resumeRoutes);
 
 
 app.post('/api/form', async (req, res) => {
+    console.log("form")
     try {
         const newResume = new Resume(req.body);
         await newResume.save();
