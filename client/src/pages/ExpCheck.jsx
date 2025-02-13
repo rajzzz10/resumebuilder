@@ -31,15 +31,16 @@ const ExpCheck = () => {
   const getDescription = () => {
     switch (selectedExp) {
       case 'fresher':
-        return '<i>Typically less than 6 months experience. We\'ll help you create a resume with relevant sections.</i>';
+        return '<i>No prior experience. We\'ll help you craft a resume with a strong focus on skills, education, and projects.</i>';
       case 'mid':
-        return '<i>2-5 years of experience. We\'ll highlight your achievements and skills.</i>';
+        return '<i>2-5 years of experience. We\'ll emphasize your work history, achievements, and technical skills.</i>';
       case 'expert':
-        return '<i>More than 5 years of experience & certification. We\'ll showcase your expertise and leadership skills.</i>';
+        return '<i>5+ years of experience with relevant certifications. We\'ll showcase your expertise, leadership, and industry impact.</i>';
       default:
         return '';
     }
-  };
+};
+
 
   return (
     <>

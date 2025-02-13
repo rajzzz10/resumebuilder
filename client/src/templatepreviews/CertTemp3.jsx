@@ -7,7 +7,7 @@ const CertTemp3 = ({ formData }) => {
             <div className="resume" id='resume'>
                 <div className='left-section'>
                     <div className='image-container'>
-                        <img src={formData.personalInfo?.image} alt="Profile" />
+                        <img src={formData.personalInfo?.image} />
                     </div>
 
                     <div className='resume-content-left'>

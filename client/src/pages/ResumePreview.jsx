@@ -16,6 +16,7 @@ import NoTemplates from './NoTemplates';
 import ExpTemp3 from '../templatepreviews/ExpTemp3';
 import ExpTemp2 from '../templatepreviews/ExpTemp2';
 import CertTemp2 from '../templatepreviews/CertTemp2';
+import CertTemp1 from '../templatepreviews/CertTemp1';
 
 const ResumePreview = () => {
     const location = useLocation();
@@ -44,6 +45,7 @@ const ResumePreview = () => {
         }
         else if (name.includes('Certified Template')) {
             switch (id) {
+                case 1: return <CertTemp1 formData={formData} />;
                 case 2: return <CertTemp2 formData={formData} />;
                 case 3: return <CertTemp3 formData={formData} />;
                 default: return <NoTemplates/>;

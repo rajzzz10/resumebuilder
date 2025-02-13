@@ -12,7 +12,7 @@ const CertTemplate = () => {
     { id: 1, name: 'Certified Template 1', image: '/templateImages/certified-Templates/certTemp1.jpg', hasImage: true },
     { id: 2, name: 'Certified Template 2', image: '/templateImages/certified-Templates/certTemp2.jpg', hasImage: true },
     { id: 3, name: 'Certified Template 3', image: '/templateImages/certified-Templates/certTemp3.jpg', hasImage: true },
-    { id: 4, name: 'Certified Template 4', image: '/templateImages/certified-Templates/certTemp4.png', hasImage: true },
+    // { id: 4, name: 'Certified Template 4', image: '/templateImages/certified-Templates/certTemp4.png', hasImage: true },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
