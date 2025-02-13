@@ -38,6 +38,7 @@ const Education = ({ formData, handleChange }) => {
                   onChange={(e) => handleFieldChange(index, 'degree', e.target.value)}
                 />
                 <label htmlFor={`degree-${index}`}>Degree <span className='red'>*</span></label>
+                <span className='fw-lighter ps-2'>Ex - Bsc (Physics)</span>
               </div>
               <div className="form-floating mb-3">
                 <input

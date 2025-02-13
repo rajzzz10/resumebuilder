@@ -51,7 +51,7 @@ const CertTemp3 = ({ formData }) => {
 
                 <div className='right-section'>
                     {/* Header Section with Name and Job Title */}
-                    <header className="resume-header">
+                    <header className="resume-header text-center">
                         <h1 className="name fw-bolder">{formData.personalInfo?.name || 'YOUR NAME'}</h1>
                         <h3 className="job-title">{formData.personalInfo?.title || 'Professional Title'}</h3>
                     </header>

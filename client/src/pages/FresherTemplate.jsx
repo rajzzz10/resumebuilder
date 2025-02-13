@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useCheck } from '../context/checkContext';
 import '../css/chooseTemp.css';
-import MyNavbar from './Navbar';
-import Footer from './Footer';
 
 const FresherTemplate = () => {
   const { updateCheckState } = useCheck();
@@ -15,18 +13,35 @@ const FresherTemplate = () => {
     { id: 2, name: 'Fresher Template 2', image: '/templateImages/freshers-Templates/fresherTemp2.webp', hasImage: true, hasProject: false },
     { id: 3, name: 'Fresher Template 3', image: '/templateImages/freshers-Templates/FresherTemp4.jpg', hasImage: true, hasProject: true },
     { id: 4, name: 'Fresher Template 4', image: '/templateImages/freshers-Templates/fresherTemp3.webp', hasImage: true, hasProject: true },
-
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const templatesToShow = 3;
+  const [templatesToShow, setTemplatesToShow] = useState(3);
+
+  // Adjust number of templates based on screen size
+  useEffect(() => {
+    const updateTemplatesToShow = () => {
+      if (window.innerWidth < 768) {
+        setTemplatesToShow(1);
+      } else {
+        setTemplatesToShow(3);
+      }
+    };
+
+    updateTemplatesToShow();
+    window.addEventListener('resize', updateTemplatesToShow);
+
+    return () => {
+      window.removeEventListener('resize', updateTemplatesToShow);
+    };
+  }, []);
 
   const handlePrev = () => {
     if (currentIndex > 0) {
       setCurrentIndex((prevIndex) => prevIndex - 1);
     }
   };
-  
+
   const handleNext = () => {
     if (currentIndex + templatesToShow < templates.length) {
       setCurrentIndex((prevIndex) => prevIndex + 1);
@@ -34,7 +49,7 @@ const FresherTemplate = () => {
   };
 
   const handleTemplateSelection = (template) => {
-    updateCheckState({ hasImage: template.hasImage, hasProject: template.hasProject, selectedTemplate: template }); // Store template
+    updateCheckState({ hasImage: template.hasImage, hasProject: template.hasProject, selectedTemplate: template });
     navigate('/form');
   };
 
@@ -44,7 +59,7 @@ const FresherTemplate = () => {
       <p className="text-center mb-4">Select one of our templates designed for freshers.</p>
       <div className="template-slider d-flex align-items-center position-relative w-100">
         <Button variant="warning" size="lg" className="prev-btn" onClick={handlePrev} disabled={currentIndex === 0}>‹</Button>
-        <Row className="w-100">
+        <Row className="w-100 justify-content-center">
           {templates.slice(currentIndex, currentIndex + templatesToShow).map((template) => (
             <Col key={template.id} xs={12} md={4} className="template-card mb-4">
               <img src={template.image} alt={template.name} className="img-fluid template-image" />

@@ -46,8 +46,10 @@
   right: 10px;
 }
 
-@media (max-width: 992px) {
+/* 📌 Fix for Mobile */
+@media (max-width: 768px) {
   .template-card {
+    width: 90%;
     padding: 5px;
   }
 
@@ -57,29 +59,18 @@
   }
 }
 
-@media (max-width: 768px) {
-  .template-card {
-    padding: 3px;
-  }
-
-  .prev-btn, .next-btn {
-    font-size: 1.2rem;
-    padding: 5px 8px;
-  }
-}
-
 @media (max-width: 480px) {
   .template-slider {
     flex-direction: column;
   }
 
   .template-card {
-    width: 90%;
+    width: 100%;
     padding: 5px;
   }
 
   .prev-btn, .next-btn {
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding: 4px 6px;
   }
 }
