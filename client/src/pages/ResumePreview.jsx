@@ -35,10 +35,10 @@ const ResumePreview = () => {
             }
         } else if (name.includes('Experienced Template')) {
             switch (id) {
-                case 1: return <ExpTemp1 formData={formData}  />;
-                case 2: return <ExpTemp2 formData={formData}  />;
+                case 1: return <ExpTemp1 formData={formData} />;
+                case 2: return <ExpTemp2 formData={formData} />;
                 case 3: return <ExpTemp3 formData={formData} />;
-                default: return <NoTemplates/>;
+                default: return <NoTemplates />;
             }
         }
         else if (name.includes('Certified Template')) {
@@ -46,7 +46,7 @@ const ResumePreview = () => {
                 case 1: return <CertTemp1 formData={formData} />;
                 case 2: return <CertTemp2 formData={formData} />;
                 case 3: return <CertTemp3 formData={formData} />;
-                default: return <NoTemplates/>;
+                default: return <NoTemplates />;
             }
         }
 
@@ -55,23 +55,30 @@ const ResumePreview = () => {
 
     const handleDownload = () => {
         const input = document.getElementById('resume');
+    
+        input.style.transform = "scale(1)";
+        input.style.transformOrigin = "top left";
+    
         html2canvas(input, { scale: 2 }).then((canvas) => {
             const imgData = canvas.toDataURL('image/png');
             const pdf = new jsPDF('p', 'mm', 'a4');
-
+    
             const imgWidth = pdf.internal.pageSize.getWidth();
-            const imgHeight = (canvas.height * imgWidth) / canvas.width; // Maintain aspect ratio
-
-            if (imgHeight > pdf.internal.pageSize.getHeight()) {
-                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, pdf.internal.pageSize.getHeight());
-            } else {
-                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-            }
-
+            const imgHeight = (canvas.height * imgWidth) / canvas.width; 
+    
+            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
             pdf.save('resume.pdf');
+    
+            // Restore the margin after download
+            resumeElement.style.margin = originalMargin;
+            
+            // Restore the original scaling
+            input.style.transform = "scale(0.5) translateX(50%)";
+            input.style.transformOrigin = "top left";
         });
     };
-
+    
+    
     return (
         <>
             <MyNavbar />
@@ -79,11 +86,12 @@ const ResumePreview = () => {
                 <button className="btn btn-warning mb-3" onClick={handleDownload}>Download as PDF</button>
             </div>
             <div className="resume-container ">
-                <div>
+                <div className="resume-preview p-0 m-0" id="resume">
                     {renderTemplatePreview()}
                 </div>
             </div>
-            
+
+
         </>
     );
 };

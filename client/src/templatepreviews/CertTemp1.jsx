@@ -3,7 +3,7 @@ import React from 'react';
 
 const CertTemp1 = ({ formData }) => {
     return (
-        <div className="C1-container" id="resume">
+        <div className="C1-container"  >
             {/* Header Section with Wave Background */}
             <div className="C1-header">
                 <div className="C1-header-content">
