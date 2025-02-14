@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import FresherTemp2 from '../templatepreviews/FresherTemp2';
@@ -18,6 +18,7 @@ import CertTemp1 from '../templatepreviews/CertTemp1';
 
 const ResumePreview = () => {
     const location = useLocation();
+    const navigate = useNavigate(); // Initialize navigation
     const { formData, selectedTemplate } = location.state || {};
 
     const renderTemplatePreview = () => {
@@ -55,34 +56,38 @@ const ResumePreview = () => {
 
     const handleDownload = () => {
         const input = document.getElementById('resume');
-    
+
         input.style.transform = "scale(1)";
         input.style.transformOrigin = "top left";
-    
+
         html2canvas(input, { scale: 2 }).then((canvas) => {
             const imgData = canvas.toDataURL('image/png');
             const pdf = new jsPDF('p', 'mm', 'a4');
-    
+
             const imgWidth = pdf.internal.pageSize.getWidth();
-            const imgHeight = (canvas.height * imgWidth) / canvas.width; 
-    
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
             pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
             pdf.save('resume.pdf');
-    
+
             // Restore the margin after download
             resumeElement.style.margin = originalMargin;
-            
+
             // Restore the original scaling
             input.style.transform = "scale(0.5) translateX(50%)";
             input.style.transformOrigin = "top left";
         });
     };
-    
-    
+
+    const handleEdit = () => {
+        navigate('/form', { state: { formData, selectedTemplate } }); // Pass form data back
+    };
+
     return (
         <>
             <MyNavbar />
-            <div className="download-btn">
+            <div className="download-btn gap-3">
+                <button className="btn btn-secondary mb-3" onClick={handleEdit}>Edit</button>
                 <button className="btn btn-warning mb-3" onClick={handleDownload}>Download as PDF</button>
             </div>
             <div className="resume-container ">

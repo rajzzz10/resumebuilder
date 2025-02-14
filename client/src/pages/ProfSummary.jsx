@@ -14,12 +14,12 @@ const ProfSummary = ({ formData, handleChange }) => {
             setError('Please enter a job role first');
             return;
         }
-    
+
         setIsLoading(true);
         setError('');
-    
+
         const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-    
+
         try {
             const response = await axios.post(
                 `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`,
@@ -33,32 +33,32 @@ const ProfSummary = ({ formData, handleChange }) => {
                     }]
                 }
             );
-            
+
             try {
                 let summariesText = response.data.candidates[0].content.parts[0].text;
-                
+
                 // Remove markdown formatting if present
                 summariesText = summariesText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
-                
+
                 console.log('Cleaned response:', summariesText); // For debugging
-                
+
                 const summariesArray = JSON.parse(summariesText);
-                
+
                 if (!Array.isArray(summariesArray) || summariesArray.length === 0) {
                     throw new Error('Invalid response format');
                 }
-                
+
                 setSuggestions(summariesArray);
             } catch (parseError) {
                 console.error('Raw response:', response.data.candidates[0].content.parts[0].text);
                 console.error('Parse error:', parseError);
                 setError('Invalid response format from AI service. Please try again.');
             }
-            
+
         } catch (err) {
             console.error('API Error:', err.response?.data || err.message);
             setError(
-                err.response?.data?.error?.message || 
+                err.response?.data?.error?.message ||
                 'Failed to generate summaries. Please try again.'
             );
         } finally {
@@ -77,9 +77,10 @@ const ProfSummary = ({ formData, handleChange }) => {
                     {error}
                 </Alert>
             )}
-            
+
             <div className="d-flex gap-2 mb-3">
                 <div className="form-floating flex-grow-1">
+
                     <input
                         type="text"
                         className="form-control"
@@ -99,6 +100,7 @@ const ProfSummary = ({ formData, handleChange }) => {
                 </button>
             </div>
 
+            <span className='fw-lighter ps-2'><span className='red '>* </span>Edit According to your requirement</span>
             {suggestions.length > 0 && (
                 <div className="bg-light p-3 rounded mb-3">
                     <h5>AI Generated Suggestions:</h5>

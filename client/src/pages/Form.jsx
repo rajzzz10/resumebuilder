@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import PersonalInfo from './PersonalInfo';
 import Education from './Education';
 import Experience from './Experience';
@@ -24,12 +24,25 @@ import CertTemp2 from '../templatepreviews/CertTemp2';
 import CertTemp1 from '../templatepreviews/CertTemp1';
 
 const Form = () => {
+    const location = useLocation();
     const navigate = useNavigate();
     const { checkState } = useCheck();
-    const { hasExperience, hasCertification, selectedTemplate ,hasProject} = checkState;
+    const { hasExperience, hasCertification, selectedTemplate, hasProject } = checkState;
 
     // Form State
-    const [formData, setFormData] = useState({
+    // const [formData, setFormData] = useState({
+    //     personalInfo: { name: '', title: '', email: '', phone: '', adress: '' },
+    //     profSummary: { summary: '' },
+    //     education: [{ degree: '', institution: '', year: '' }],
+    //     projects: hasProject ? [{ name: '', startDate: '', endDate: '', description: '' }] : [],
+    //     experience: hasExperience ? [{ jobTitle: '', company: '', years: '', description: '' }] : [],
+    //     certificate: hasCertification ? { title: '', issuedBy: '' } : {},
+    //     skills: [],
+    //     otherDetails: { languages: [], hobbies: [] } // Now both are arrays
+    // });
+
+    // Check if formData is passed from ResumePreview
+    const initialFormData = location.state?.formData || {
         personalInfo: { name: '', title: '', email: '', phone: '', adress: '' },
         profSummary: { summary: '' },
         education: [{ degree: '', institution: '', year: '' }],
@@ -37,8 +50,9 @@ const Form = () => {
         experience: hasExperience ? [{ jobTitle: '', company: '', years: '', description: '' }] : [],
         certificate: hasCertification ? { title: '', issuedBy: '' } : {},
         skills: [],
-        otherDetails: { languages: [], hobbies: [] } // Now both are arrays
-    });
+        otherDetails: { languages: [], hobbies: [] }
+    };
+    const [formData, setFormData] = useState(initialFormData);
 
     const handleChange = (section, field, value) => {
         if (section === 'otherDetails') {
@@ -105,26 +119,26 @@ const Form = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         // Extracting values for validation
         const { personalInfo, education, skills, otherDetails } = formData;
         const { name, email, phone, adress } = personalInfo;
-    
+
         // Validation checks
         if (
-            !name.trim() || 
-            !email.trim() || 
-            !phone.trim() || 
-            !adress.trim() || 
-            education.length === 0 || 
-            skills.length === 0 || 
-            otherDetails.languages.length === 0 || 
+            !name.trim() ||
+            !email.trim() ||
+            !phone.trim() ||
+            !adress.trim() ||
+            education.length === 0 ||
+            skills.length === 0 ||
+            otherDetails.languages.length === 0 ||
             otherDetails.hobbies.length === 0
         ) {
             alert('Please fill all required fields (*) before submitting.');
             return; // Stop submission if validation fails
         }
-    
+
         try {
             const response = await fetch('http://localhost:5000/api/form', {
                 method: 'POST',
@@ -133,7 +147,7 @@ const Form = () => {
                 },
                 body: JSON.stringify(formData),
             });
-    
+
             const result = await response.json();
             if (response.ok) {
                 alert('Form submitted successfully!');
@@ -159,15 +173,15 @@ const Form = () => {
                 case 2: return <FresherTemp2 formData={formData} />;
                 case 3: return <FresherTemp4 formData={formData} />;
                 case 4: return <FresherTemp3 formData={formData} />;
-                default: return null;
+                default: return  <NoTemplates />;
             }
         }
         else if (name.includes('Experienced Template')) {
             switch (id) {
-                case 1: return <ExpTemp1 formData={formData}  />;
-                case 2: return <ExpTemp2 formData={formData}  />;
+                case 1: return <ExpTemp1 formData={formData} />;
+                case 2: return <ExpTemp2 formData={formData} />;
                 case 3: return <ExpTemp3 formData={formData} />;
-                default: return <NoTemplates/>;
+                default: return <NoTemplates />;
             }
         }
         else if (name.includes('Certified Template')) {
@@ -175,11 +189,11 @@ const Form = () => {
                 case 1: return <CertTemp1 formData={formData} />;
                 case 2: return <CertTemp2 formData={formData} />;
                 case 3: return <CertTemp3 formData={formData} />;
-                default: return  <NoTemplates/>;;
+                default: return <NoTemplates />;;
             }
         }
 
-        return  <NoTemplates/>;;
+        return <NoTemplates />;;
     };
 
     return (
