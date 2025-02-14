@@ -3,7 +3,7 @@
 }
 .first-letter::first-letter {
   font-size: 150%;
-  color: yellow;
+  color: #FFCA2C;
 }
 
 .yellow{
@@ -17,4 +17,7 @@
 }
 .red{
   color: red;
+}
+.primaryYellow{
+  color: #FFCA2C;
 }

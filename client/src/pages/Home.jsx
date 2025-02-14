@@ -45,7 +45,7 @@ const Home = () => {
                     <div className="feature1 mb-3">
                         <Card style={{ minWidth: '23vw', maxWidth: 'fit-content', height: 'fit-content', border: 'none', borderRadius: '10%', padding: '0', margin: '0' , boxShadow:'0 2px 2px'}}>
                             <Card.Body>
-                                <Card.Title className='text-center display-6 yellow' ><i className="fa-solid fa-rocket"></i></Card.Title>
+                                <Card.Title className='text-center display-6 primaryYellow ' ><i className="fa-solid fa-rocket"></i></Card.Title>
                                 <Card.Title className='text-center display-5 fw-normal'>Effortless</Card.Title>
                                 <Card.Text className='text-center gray fw-light fs-3 first-letter'>
                                     Build resume in minutes with out intuitive interface
@@ -56,10 +56,10 @@ const Home = () => {
                     <div className="feature2  mb-3">
                         <Card style={{ minWidth: '23vw', maxWidth: 'fit-content', height: 'fit-content', border: 'none', borderRadius: '10%' , boxShadow:'0 2px 2px'}}>
                             <Card.Body>
-                                <Card.Title className='text-center display-6 yellow' ><i className="fa-solid fa-puzzle-piece"></i></Card.Title>
+                                <Card.Title className='text-center display-6 primaryYellow' ><i className="fa-solid fa-puzzle-piece"></i></Card.Title>
                                 <Card.Title className='text-center display-5 fw-normal'>Relevant</Card.Title>
                                 <Card.Text className='text-center first-letter gray fw-light fs-3'>
-                                    Highlight your achievements & skills with tailored sectiobs & bullet points
+                                    Highlight your achievements & skills with tailored sections & bullet points
                                 </Card.Text>
                             </Card.Body>
                         </Card>
@@ -67,7 +67,7 @@ const Home = () => {
                     <div className="feature3  mb-3">
                         <Card style={{ minWidth: '23vw', maxWidth: 'fit-content', height: 'fit-content', border: 'none', borderRadius: '10%' , boxShadow:'0 2px 2px' }}>
                             <Card.Body>
-                                <Card.Title className='text-center display-6 yellow' ><i className="fa-solid fa-lightbulb"></i></Card.Title>
+                                <Card.Title className='text-center display-6 primaryYellow' ><i className="fa-solid fa-lightbulb"></i></Card.Title>
                                 <Card.Title className='text-center display-5 fw-normal'>Modern</Card.Title>
                                 <Card.Text className='text-center fs-3 fw-light gray first-letter'>
                                     Choose from variety of professional templates
