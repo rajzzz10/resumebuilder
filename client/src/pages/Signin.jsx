@@ -6,6 +6,7 @@ import '../App.css'
 import Footer from './Footer';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import MyNavbar from './Navbar';
 
 
 const Signin = () => {
@@ -34,6 +35,7 @@ const Signin = () => {
 
   return (
     <>
+      <MyNavbar />
       <div className="signinPage row d-flex justify-content-evenly m-0">
         <div className="signin-section col-sm-6 d-flex justify-content-center align-items-center ">
           <div className="signinRightBox">
@@ -43,10 +45,10 @@ const Signin = () => {
                 controlId="floatingInput"
                 label="Your Name"
                 className="mb-3"
-                
+
               >
                 <Form.Control
-                name="name" 
+                  name="name"
                   type="text"
                   placeholder="Enter your Name"
                   value={formData.name}
@@ -57,11 +59,11 @@ const Signin = () => {
                 label="Email address"
                 className="mb-3"
               >
-                <Form.Control type="email" name="email"  value={formData.email}
+                <Form.Control type="email" name="email" value={formData.email}
                   onChange={handleChange} placeholder="name@example.com" />
               </FloatingLabel>
               <FloatingLabel controlId="floatingPassword" label="Password">
-                <Form.Control type="password" name="password"  value={formData.password}
+                <Form.Control type="password" name="password" value={formData.password}
                   onChange={handleChange} placeholder="Password" />
               </FloatingLabel>
 

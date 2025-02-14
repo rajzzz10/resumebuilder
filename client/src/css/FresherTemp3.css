@@ -145,7 +145,7 @@
   }
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .F3resume-container {
     grid-template-columns: 1fr;
     width: 100%;
@@ -154,4 +154,4 @@
   .F3skills-list {
     grid-template-columns: repeat(2, 1fr);
   }
-}
+} */

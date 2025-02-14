@@ -3,8 +3,6 @@ import { useLocation } from 'react-router-dom';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import FresherTemp2 from '../templatepreviews/FresherTemp2';
-import '../css/resumeTemp1.css';
-import '../css/FresherTemp2.css';
 import CertTemp3 from '../templatepreviews/CertTemp3';
 import MyNavbar from './Navbar';
 import '../css/resumePreview.css'

@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Middleware
 const corOptions = {
     origin: ["http://localhost:5173"]
+    // origin: "*",  Allow all origins (for testing)
 };
 app.use(cors(corOptions));
 app.use(express.json());

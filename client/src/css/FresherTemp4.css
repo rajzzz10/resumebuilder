@@ -141,10 +141,10 @@
       box-shadow: none;
     }
   }
-  
+/*   
   @media (max-width: 768px) {
     .F4-container {
       grid-template-columns: 1fr;
       width: 100%;
     }
-  }
+  } */

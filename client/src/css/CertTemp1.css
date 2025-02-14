@@ -4,6 +4,7 @@
     margin: 0 auto;
     background: white;
     position: relative;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
     overflow: hidden;
   }
   
@@ -176,6 +177,10 @@
 
   .C1-right-column{
     padding-right: 5%;
+  }
+
+  .C2-certificate{
+    padding-left: 10px;
   }
   /* @media (max-width: 768px) {
     .C1-main-content {

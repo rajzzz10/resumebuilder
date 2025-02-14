@@ -1,3 +1,21 @@
+.resume-container {
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+}
+
+.download-btn button{ 
+    text-align: center;
+    margin-top: 10px; /* Reduced margin */
+}
+
+.download-btn {
+    background-color: #f4f4f9;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* @media (max-width: 992px)  {
     .resume-container {
         display: none;

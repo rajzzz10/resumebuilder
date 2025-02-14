@@ -192,7 +192,7 @@
     }
   }
   
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     .E3-container {
       grid-template-columns: 1fr;
       width: 100%;
@@ -201,4 +201,4 @@
     .E3-skills {
       grid-template-columns: 1fr;
     }
-  }
+  } */

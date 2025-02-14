@@ -127,7 +127,7 @@
     }
   }
   
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     .F1resume-container {
       grid-template-columns: 1fr;
       width: 100%;
@@ -136,4 +136,4 @@
     .F1skills-grid {
       grid-template-columns: repeat(2, 1fr);
     }
-  }
+  } */

@@ -79,7 +79,7 @@ const CertTemp1 = ({ formData }) => {
                             <h3 className="C1-section-title">Certifications </h3>
                         </div>
                         <div className="C1-section-content">
-                            <span className='fw-bold'>{formData.certificate?.certification}</span> <span> - </span>
+                            <span className='fw-bold C2-certificate'>{formData.certificate?.certification}</span> <span> - </span>
                             <span>{formData.certificate?.placeOfCert}</span>
                         </div>
                     </div>

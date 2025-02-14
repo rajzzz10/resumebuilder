@@ -176,7 +176,7 @@
       box-shadow: none;
     }
   }
-  
+/*   
   @media (max-width: 768px) {
     .C2-header {
       flex-direction: column;
@@ -196,4 +196,4 @@
       width: 100%;
       padding: 10px;
     }
-  }
+  } */

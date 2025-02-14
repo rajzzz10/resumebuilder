@@ -113,7 +113,7 @@
   }
   
   /* Responsive Design */
-  @media screen and (max-width: 768px) {
+  /* @media screen and (max-width: 768px) {
     .resume-grid {
       grid-template-columns: 1fr;
       width: 100%;
@@ -126,7 +126,7 @@
     .left-column, .right-column {
       padding: 1rem;
     }
-  }
+  } */
   
   /* Print Styles */
   @media print {

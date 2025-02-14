@@ -169,7 +169,7 @@
     }
   }
   
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     .E1-container {
       grid-template-columns: 1fr;
       width: 100%;
@@ -178,4 +178,4 @@
     .E1-languages {
       grid-template-columns: 1fr;
     }
-  }
+  } */
