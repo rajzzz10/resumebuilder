@@ -24,6 +24,7 @@ const Projects = ({ formData, handleChange }) => {
     <div>
       {projectFields.map((project, index) => (
         <div key={index} className="project-section">
+            <span className='fw-lighter ps-2'><span className='red '>* </span>Add at least 2 projects to showcase your skills</span> <hr />x
           <div className="row">
             {/* Project Name */}
             <div className="col">
@@ -64,6 +65,7 @@ const Projects = ({ formData, handleChange }) => {
           {/* Project Description */}
           <div className="row">
             <div className="col">
+            <span className='fw-lighter ps-2'><span className='red '>* </span>Write a short and precise description of your project.</span>
               <div className="form-floating mt-3">
                 <textarea
                   id={`project-desc-${index}`}

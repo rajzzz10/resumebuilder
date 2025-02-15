@@ -23,6 +23,7 @@ const Skills = ({ formData, handleChange }) => {
   return (
     <div>
       <div className="skill-section">
+      <span className='fw-lighter ps-2'><span className='red '>* </span>Add at least 4-5 skills.</span> 
         <div className="form-floating mb-3">
           <input
             id="skill-input"

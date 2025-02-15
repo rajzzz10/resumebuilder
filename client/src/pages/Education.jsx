@@ -25,8 +25,10 @@ const Education = ({ formData, handleChange }) => {
     <div>
       {educationFields.map((education, index) => (
         <div key={index} className="education-section">
+            <span className='fw-lighter ps-2'><span className='red '>* </span>Please provide details of your last two educational qualifications to showcase your academic background effectively.</span> <hr />
           <div className="row">
             {/* Degree and Institution - First row */}
+
             <div className="col">
               <div className="form-floating mb-3">
                 <input
