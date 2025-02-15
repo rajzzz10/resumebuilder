@@ -29,18 +29,6 @@ const Form = () => {
     const { checkState } = useCheck();
     const { hasExperience, hasCertification, selectedTemplate, hasProject } = checkState;
 
-    // Form State
-    // const [formData, setFormData] = useState({
-    //     personalInfo: { name: '', title: '', email: '', phone: '', adress: '' },
-    //     profSummary: { summary: '' },
-    //     education: [{ degree: '', institution: '', year: '' }],
-    //     projects: hasProject ? [{ name: '', startDate: '', endDate: '', description: '' }] : [],
-    //     experience: hasExperience ? [{ jobTitle: '', company: '', years: '', description: '' }] : [],
-    //     certificate: hasCertification ? { title: '', issuedBy: '' } : {},
-    //     skills: [],
-    //     otherDetails: { languages: [], hobbies: [] } // Now both are arrays
-    // });
-
     // Check if formData is passed from ResumePreview
     const initialFormData = location.state?.formData || {
         personalInfo: { name: '', title: '', email: '', phone: '', adress: '' },
@@ -53,6 +41,14 @@ const Form = () => {
         otherDetails: { languages: [], hobbies: [] }
     };
     const [formData, setFormData] = useState(initialFormData);
+
+     // Autofill form if scanned data is passed
+     useEffect(() => {
+        if (location.state?.scannedData) {
+            console.log("Autofilling form with scanned data:", location.state.scannedData);
+            setFormData((prev) => ({ ...prev, ...location.state.scannedData }));
+        }
+    }, [location.state]);
 
     const handleChange = (section, field, value) => {
         if (section === 'otherDetails') {
