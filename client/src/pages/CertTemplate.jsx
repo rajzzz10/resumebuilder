@@ -3,6 +3,7 @@ import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useCheck } from '../context/checkContext';
 import '../css/chooseTemp.css';
+import ChooseStartModal from "../modal/ChooseStartModal";
 
 const CertTemplate = () => {
   const { updateCheckState } = useCheck();
@@ -17,24 +18,26 @@ const CertTemplate = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [templatesToShow, setTemplatesToShow] = useState(3);
-    // Adjust number of templates based on screen size
-      useEffect(() => {
-        const updateTemplatesToShow = () => {
-          if (window.innerWidth < 770) {
-            setTemplatesToShow(1);
-          } else {
-            setTemplatesToShow(3);
-          }
-        };
-    
-        updateTemplatesToShow();
-        window.addEventListener('resize', updateTemplatesToShow);
-    
-        return () => {
-          window.removeEventListener('resize', updateTemplatesToShow);
-        };
-      }, []);
-  
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  // Adjust number of templates based on screen size
+  useEffect(() => {
+    const updateTemplatesToShow = () => {
+      if (window.innerWidth < 770) {
+        setTemplatesToShow(1);
+      } else {
+        setTemplatesToShow(3);
+      }
+    };
+
+    updateTemplatesToShow();
+    window.addEventListener('resize', updateTemplatesToShow);
+
+    return () => {
+      window.removeEventListener('resize', updateTemplatesToShow);
+    };
+  }, []);
+
 
   const handlePrev = () => {
     if (currentIndex > 0) {
@@ -49,9 +52,19 @@ const CertTemplate = () => {
   };
 
   const handleTemplateSelection = (template) => {
-    updateCheckState({ hasImage: template.hasImage, hasProject: template.hasProject, selectedTemplate: template }); // Store template
-    navigate('/form');
+    setSelectedTemplate(template);
+    setShowModal(true);
   };
+
+  const handleOptionSelect = (option) => {
+    setShowModal(false);
+    updateCheckState({ hasImage: selectedTemplate.hasImage, hasProject: selectedTemplate.hasProject, selectedTemplate: selectedTemplate });
+
+    if (option === "scratch") {
+      navigate("/form");
+    }
+  };
+
   return (
     <Container className="d-flex flex-column align-items-center py-4">
       <h2 className="text-center mb-3 text-warning fw-bolder">Choose an Expert Resume Template</h2>
@@ -72,6 +85,7 @@ const CertTemplate = () => {
         </Row>
         <Button variant="warning" size="lg" className="next-btn" onClick={handleNext} disabled={currentIndex + templatesToShow >= templates.length}>›</Button>
       </div>
+      <ChooseStartModal show={showModal} handleClose={() => setShowModal(false)} handleOptionSelect={handleOptionSelect} />
     </Container>
   );
 };

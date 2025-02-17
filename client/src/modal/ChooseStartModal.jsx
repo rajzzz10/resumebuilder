@@ -17,24 +17,23 @@ const ChooseStartModal = ({ show, handleClose, handleOptionSelect }) => {
       alert("Please select a file first!");
       return;
     }
-  
+
     const formData = new FormData();
     formData.append("file", selectedFile);
-  
+
     setLoading(true);
     try {
       const response = await fetch("http://localhost:5000/scan", {
         method: "POST",
         body: formData,
       });
-  
+
       if (!response.ok) {
         throw new Error("Failed to scan resume");
       }
-  
+
       const extractedData = await response.json();
-      navigate("/form", { state: { scannedData: extractedData } });
-  
+      navigate("/form", { state: { scannedData: extractedData } }); 
     } catch (error) {
       console.error("Error scanning resume:", error);
       alert("Failed to scan the resume. Please try again.");
@@ -42,25 +41,25 @@ const ChooseStartModal = ({ show, handleClose, handleOptionSelect }) => {
       setLoading(false);
     }
   };
-  
+
 
   return (
-    <Modal show={show} onHide={handleClose} centered>
-      <Modal.Header closeButton>
-        <Modal.Title>Choose How You Want to Start</Modal.Title>
+    <Modal show={show} onHide={handleClose} centered >
+      <Modal.Header closeButton >
+        <Modal.Title className="pt-2 pb-2 ">Choose How You Want to Start</Modal.Title>
       </Modal.Header>
-      <Modal.Body className="text-center">
+      <Modal.Body className="text-center ">
         {!uploadMode ? (
           <>
             <Button
-              variant="primary"
+              variant="secondary"
               className="w-100 mb-2"
               onClick={() => handleOptionSelect("scratch")}
             >
               Start from Scratch
             </Button>
             <Button
-              variant="success"
+              variant="warning"
               className="w-100"
               onClick={() => setUploadMode(true)}
             >

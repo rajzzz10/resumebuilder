@@ -3,7 +3,7 @@ import { Button, Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useCheck } from "../context/checkContext";
 import "../css/chooseTemp.css";
-import ChooseStartModal from "../components/ChooseStartModal";
+import ChooseStartModal from "../modal/ChooseStartModal";
 
 const FresherTemplate = () => {
   const { updateCheckState } = useCheck();
