@@ -37,13 +37,13 @@
   }
   
   .profile-name {
-    font-size: 3.8rem;
+    font-size: 3rem;
     font-weight: bold;
     margin: 0.5rem 0;
   }
   
   .profile-title {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     font-weight: normal;
     margin-bottom: 2rem;
   }
@@ -57,7 +57,7 @@
   
   /* Section Styles */
   .section-heading {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     text-transform: uppercase;
     margin-bottom: 1rem;
     position: relative;

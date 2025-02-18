@@ -29,8 +29,11 @@ const Home = () => {
                 <div className="hero-left p-5 text-center col-lg-6 col-md-12">
                     <div className="hero-intro pt-5 fw-normal ">Only 2% of Resume makes it past to first Round.</div><br />
                     <div className="hero-intro-bottom fw-medium  ">BE IN TOP 2%</div>
-
-                    <button className='btn btn-warning hero-btn mt-5' ><a href="/exp-check" style={{textDecoration : 'none' , color:'black'}}>Create Resume Now</a></button>
+                    <div className='d-flex align-items-center justify-content-center gap-5'>
+                        <button className='btn btn-warning hero-btn mt-5' ><a href="/exp-check" style={{textDecoration : 'none' , color:'black'}}>Single Page Resume</a></button>
+                        <button className='btn btn-warning hero-btn mt-5' ><a href="/multipage-temp" style={{textDecoration : 'none' , color:'black'}}>Multi Page Resume</a></button>
+                        
+                    </div>
 
                 </div>
                 <div className="hero-right col-lg-6 col-md-12 ">

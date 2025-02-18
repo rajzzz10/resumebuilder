@@ -15,10 +15,11 @@ import ExpTemp3 from '../templatepreviews/ExpTemp3';
 import ExpTemp2 from '../templatepreviews/ExpTemp2';
 import CertTemp2 from '../templatepreviews/CertTemp2';
 import CertTemp1 from '../templatepreviews/CertTemp1';
+// import MultiTemp1 from '../templatepreviews/MultiTemp1';
 
 const ResumePreview = () => {
     const location = useLocation();
-    const navigate = useNavigate(); // Initialize navigation
+    const navigate = useNavigate();
     const { formData, selectedTemplate } = location.state || {};
 
     const renderTemplatePreview = () => {
@@ -41,15 +42,20 @@ const ResumePreview = () => {
                 case 3: return <ExpTemp3 formData={formData} />;
                 default: return <NoTemplates />;
             }
-        }
-        else if (name.includes('Certified Template')) {
+        } else if (name.includes('Certified Template')) {
             switch (id) {
                 case 1: return <CertTemp1 formData={formData} />;
                 case 2: return <CertTemp2 formData={formData} />;
                 case 3: return <CertTemp3 formData={formData} />;
                 default: return <NoTemplates />;
             }
-        }
+        } 
+        // else if (name.includes('Multipage Template')) {
+        //     switch (id) {
+        //         case 1: return <MultiTemp1 formData={formData} />;
+        //         default: return <NoTemplates />;
+        //     }
+        // }
 
         return null;
     };
@@ -95,8 +101,6 @@ const ResumePreview = () => {
                     {renderTemplatePreview()}
                 </div>
             </div>
-
-
         </>
     );
 };
