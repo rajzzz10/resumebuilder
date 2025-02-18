@@ -11,7 +11,7 @@ import { CheckProvider } from '../context/checkContext';
 import FresherTemplate from '../pages/FresherTemplate';
 import ExpTemplate from '../pages/ExpTemplate';
 import CertTemplate from '../pages/CertTemplate';
-// import MultiPage from '../pages/MultiPage';
+import MultiPage from '../pages/MultiPage';
 
 const AppRoutes = () => {
   return (
@@ -27,7 +27,7 @@ const AppRoutes = () => {
         <Route path='/choose-template/fresher' element={<FresherTemplate/>} />
         <Route path='/choose-template/mid-level' element={<ExpTemplate/>} />
         <Route path='/choose-template/expert' element={<CertTemplate/>} />
-        {/* <Route path='/multipage-temp' element={<MultiPage />} /> */}
+        <Route path='/multipage-temp' element={<MultiPage />} />
       </Routes>
       </CheckProvider>
     </BrowserRouter>

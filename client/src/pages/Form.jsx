@@ -22,7 +22,7 @@ import ExpTemp3 from '../templatepreviews/ExpTemp3';
 import ExpTemp2 from '../templatepreviews/ExpTemp2';
 import CertTemp2 from '../templatepreviews/CertTemp2';
 import CertTemp1 from '../templatepreviews/CertTemp1';
-// import MultiTemp1 from '../templatepreviews/MultiTemp1';
+import MultiTemp1 from '../templatepreviews/MultiTemp1';
 
 const Form = () => {
     const location = useLocation();
@@ -189,12 +189,12 @@ const Form = () => {
                 default: return <NoTemplates />;;
             }
         }
-        // else if (name.includes('Multipage Template')) {
-        //     switch (id) {
-        //         case 1: return <MultiTemp1 formData={formData} />;
-        //         default: return <NoTemplates />;;
-        //     }
-        // }
+        else if (name.includes('Multipage Template')) {
+            switch (id) {
+                case 1: return <MultiTemp1 formData={formData} />;
+                default: return <NoTemplates />;;
+            }
+        }
 
         return <NoTemplates />;;
     };
@@ -203,12 +203,6 @@ const Form = () => {
         <>
             <MyNavbar />
             <div className="form-container">
-                {/* Progress Bar */}
-                {/* <div className="progress-container">
-                <div className="progress-bar" style={{ width: `${(page / (formSteps.length - 1)) * 100}%` }}></div>
-            </div> */}
-
-
 
                 <div className="display-3 text-center mb-4">{formSteps[page].title}</div>
 

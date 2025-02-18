@@ -1,0 +1,97 @@
+.M1-wrapper {
+    background: white;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+}
+
+.M1-page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    background: white;
+    position: relative;
+    page-break-after: always;
+}
+
+.M1-header {
+    text-align: center;
+    padding: 20mm 20mm 10mm 20mm;
+    background: white;
+    border-bottom: 2px solid #352F44;
+}
+
+.M1-name {
+    font-size: 2.5rem;
+    color: #352F44;
+    margin: 0 0 0.5rem 0;
+}
+
+.M1-job-title {
+    font-size: 1.5rem;
+    color: #666;
+    margin: 0;
+}
+
+.M1-content {
+    padding: 20mm;
+    padding-top: 0;
+}
+
+.M1-section {
+    margin-bottom: 2rem;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+}
+
+.M1-section-title {
+    color: #352F44;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #B4FF9F;
+}
+
+.M1-project-item,
+.M1-education-item {
+    break-inside: avoid;
+}
+
+.M1-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.M1-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.M1-certification-item {
+    background: #F1F7FF;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+@media print {
+    .M1-wrapper {
+        width: 210mm;
+        background: none;
+    }
+
+    .M1-page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0;
+        padding: 0;
+        page-break-after: always;
+    }
+
+    @page {
+        size: A4;
+        margin: 0;
+    }
+}
