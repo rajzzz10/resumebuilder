@@ -191,7 +191,7 @@ const Form = () => {
         }
         else if (name.includes('Multipage Template')) {
             switch (id) {
-                case 1: return <MultiTemp1 key={JSON.stringify(formData)} formData={formData} />;
+                case 1: return <MultiTemp1  formData={formData} />;
                 default: return <NoTemplates />;;
             }
         }

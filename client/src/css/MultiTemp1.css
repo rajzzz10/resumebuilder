@@ -4,65 +4,22 @@
   }
   
   .M1-page {
-    width: 210mm;
-    height: 297mm;
+    width: 794px; /* 210mm at 96dpi */
+    min-height: 1123px; /* 297mm at 96dpi */
     margin: 0 auto 20px;
     background: white;
     position: relative;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     padding: 40px;
     box-sizing: border-box;
+    overflow: hidden;
   }
   
-  .M1-page-number {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    color: #666;
-    font-size: 12px;
-  }
-  
-  .M1-header {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .M1-name {
-    font-size: 32px;
-    margin: 0;
-    color: #333;
-    font-weight: 600;
-  }
-  
-  .M1-title {
-    font-size: 18px;
-    color: #666;
-    margin: 5px 0 15px;
-    font-weight: 400;
-  }
-  
-  .M1-divider {
-    height: 1px;
-    background: #333;
-    width: 100%;
-    margin: 0 auto;
-  }
-  
-  .M1-contact {
-    text-align: center;
-    margin-bottom: 40px;
-    color: #666;
-    font-size: 14px;
-  }
-  
-  .M1-separator {
-    margin: 0 10px;
-    color: #999;
+  .M1-content {
+    position: relative;
   }
   
   .M1-section {
-    break-inside: avoid;
-    page-break-inside: avoid;
     margin-bottom: 25px;
   }
   
@@ -93,41 +50,61 @@
     font-weight: 600;
   }
   
-  .M1-item-header span {
-    color: #666;
-    font-size: 14px;
-  }
-  
   .M1-company {
     color: #666;
     margin: 5px 0;
     font-size: 14px;
   }
   
-  .M1-section-content ul {
-    margin: 10px 0;
-    padding-left: 20px;
+  .M1-description {
+    white-space: pre-line;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #444;
   }
   
-  .M1-section-content li {
-    margin-bottom: 5px;
-    color: #444;
+  .M1-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .M1-name {
+    font-size: 32px;
+    margin: 0;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  .M1-title {
+    font-size: 18px;
+    color: #666;
+    margin: 5px 0 15px;
+    font-weight: 400;
+  }
+  
+  .M1-divider {
+    height: 1px;
+    background: #333;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .M1-contact {
+    text-align: center;
+    margin-top: 15px;
+    color: #666;
     font-size: 14px;
   }
   
-  .M1-content {
-    page-break-inside: avoid;
+  .M1-separator {
+    margin: 0 10px;
+    color: #999;
   }
   
-  @media print {
-    .M1-container {
-      padding: 0;
-      background: none;
-    }
-  
-    .M1-page {
-      box-shadow: none;
-      margin: 0;
-      page-break-after: always;
-    }
+  .M1-page-number {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: #666;
+    font-size: 12px;
   }

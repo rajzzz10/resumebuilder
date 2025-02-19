@@ -1,227 +1,172 @@
 import React, { useEffect, useRef, useState } from 'react';
-import '../css/MultiTemp1.css';
 
 const MultiTemp1 = ({ formData }) => {
-    const [pageContents, setPageContents] = useState([]);
-    const contentRef = useRef(null);
+  const [pages, setPages] = useState([]);
+  const contentRef = useRef(null);
 
-    const A4_HEIGHT_PX = 1123; // 297mm in pixels at 96 DPI
-    const HEADER_HEIGHT = 150; // Reduced header height for minimalist design
+  const A4_HEIGHT = 1123; // A4 height in pixels
+  const HEADER_HEIGHT = 150;
+  const PAGE_PADDING = 40;
+  const AVAILABLE_HEIGHT = A4_HEIGHT - (PAGE_PADDING * 2);
 
-    useEffect(() => {
-        if (contentRef.current) {
-            setTimeout(() => {
-                const contentElements = Array.from(contentRef.current.children);
-                console.log("Detected elements:", contentElements.map(el => el.dataset.sectionType));
-    
-                let currentPage = [];
-                let currentHeight = HEADER_HEIGHT;
-                let pages = [];
-    
-                contentElements.forEach((element, index) => {
-                    console.log("Processing section:", element.dataset.sectionType);
-    
-                    const elementContent = {
-                        type: element.dataset.sectionType,
-                        content: element.innerHTML,
-                        key: index
-                    };
-    
-                    if (currentHeight + element.offsetHeight > A4_HEIGHT_PX) {
-                        pages.push(currentPage);
-                        currentPage = [elementContent];
-                        currentHeight = HEADER_HEIGHT + element.offsetHeight;
-                    } else {
-                        currentPage.push(elementContent);
-                        currentHeight += element.offsetHeight;
-                    }
-                });
-    
-                if (currentPage.length > 0) {
-                    pages.push(currentPage);
-                }
-    
-                setPageContents(pages);
-            }, 100); // Delay to ensure DOM updates
+  useEffect(() => {
+    const measureAndSplitContent = () => {
+      if (!contentRef.current) return;
+
+      // Get all content sections
+      const sections = contentRef.current.querySelectorAll('.M1-section');
+      let currentPage = [];
+      let pages = [];
+      let heightRemaining = AVAILABLE_HEIGHT - HEADER_HEIGHT; // Account for header on first page
+
+      sections.forEach((section) => {
+        const sectionHeight = section.offsetHeight;
+        const sectionType = section.getAttribute('data-section-type');
+        const sectionContent = section.innerHTML;
+
+        // If section doesn't fit in current page
+        if (heightRemaining < sectionHeight) {
+          if (currentPage.length > 0) {
+            pages.push([...currentPage]);
+          }
+          currentPage = [];
+          heightRemaining = AVAILABLE_HEIGHT;
         }
-    }, [formData]);
-    
 
+        currentPage.push({
+          type: sectionType,
+          content: sectionContent,
+          height: sectionHeight
+        });
+        heightRemaining -= sectionHeight;
+      });
 
-    const PageContainer = ({ children, pageNumber }) => (
-        <div className="M1-page">
-            {children}
-            <div className="M1-page-number">Page {pageNumber}</div>
-        </div>
-    );
+      if (currentPage.length > 0) {
+        pages.push(currentPage);
+      }
 
-    const Header = ({ personalInfo }) => (
-        <div className="M1-header">
-            <h1 className="M1-name">{personalInfo?.name || 'YOUR NAME'}</h1>
-            <h2 className="M1-title">{personalInfo?.title || 'PROFESSIONAL TITLE'}</h2>
-            <div className="M1-divider"></div>
-        </div>
-    );
-
-    const Section = ({ title, children }) => (
-        children && (
-            <div className="M1-section">
-                <h3 className="M1-section-title">{title}</h3>
-                <div className="M1-section-content">
-                    {children}
-                </div>
-            </div>
-        )
-    );
-
-    const ContactInfo = ({ personalInfo }) => (
-        <div className="M1-contact">
-            <span>{personalInfo?.email}</span>
-            <span className="M1-separator">•</span>
-            <span>{personalInfo?.phone}</span>
-            <span className="M1-separator">•</span>
-            <span>{personalInfo?.adress}</span>
-        </div>
-    );
-
-    const renderSectionContent = (type, content) => {
-        switch (type) {
-            case 'summary':
-                return (
-                    <Section title="Professional Summary">
-                        <p>{formData.profSummary?.summary}</p>
-                    </Section>
-                );
-            case 'experience':
-                return (
-                    <Section title="Experience">
-                        {formData.experience?.map((exp, index) => (
-                            <div key={index} className="M1-item">
-                                <div className="M1-item-header">
-                                    <h4>{exp.role}</h4>
-                                    <span>{exp.startDate} - {exp.endDate}</span>
-                                </div>
-                                <p className="M1-company">{exp.company}</p>
-                                <ul>
-                                    {exp.description}
-                                </ul>
-                            </div>
-                        ))}
-                    </Section>
-                );
-            case 'projects':
-                return (
-                    <Section title="Projects">
-                        {formData.projects?.map((project, index) => (
-                            <div key={index} className="M1-item">
-                                <div className="M1-item-header">
-                                    <h4>{project.title}</h4>
-                                    <span>{project.date}</span>
-                                </div>
-                                <p>{project.description}</p>
-                            </div>
-                        ))}
-                    </Section>
-                );
-            case 'education':
-                return (
-                    <Section title="Education">
-                        {formData.education?.map((edu, index) => (
-                            <div key={index} className="M1-item">
-                                <div className="M1-item-header">
-                                    <p>{edu.degree}</p>
-                                    <span>{edu.stYear} - {edu.endYear}</span>
-                                </div>
-                                <p>{edu.institution}</p>
-                            </div>
-                        ))}
-                    </Section>
-                );
-            case 'skills':
-                return (
-                    <Section title="Skills">
-                        {formData.skills?.map((skill, index) => (
-                            <div key={index} className="M1-item">
-                                <div className="M1-item-header">
-                                <span className="C1-check-icon">✓</span>
-                                {skill}
-                                </div>
-                            </div>
-                        ))}
-                    </Section>
-                );
-            // Add other sections as needed
-            default:
-                return null;
-        }
+      setPages(pages);
     };
 
-    return (
-        <div className="M1-container">
-            {/* Hidden content for measurement */}
-            {/* Hidden content for measurement */}
-            <div ref={contentRef} style={{ position: 'absolute', visibility: 'hidden' }}>
-                <div data-section-type="summary">
-                    <Section title="Professional Summary">
-                        <p>{formData.profSummary?.summary}</p>
-                    </Section>
-                </div>
-                <div data-section-type="experience">
-                    <Section title="Experience">
-                        {formData.experience?.map((exp, index) => (
-                            <div key={index} className="M1-item">
-                                <h4>{exp.role}</h4>
-                                <span>{exp.startDate} - {exp.endDate}</span>
-                                <p>{exp.company}</p>
-                            </div>
-                        ))}
-                    </Section>
-                </div>
-                <div data-section-type="projects">
-                    <Section title="Projects">
-                        {formData.projects?.map((project, index) => (
-                            <div key={index} className="M1-item">
-                                <h4>{project.title}</h4>
-                                <span>{project.date}</span>
-                                <p>{project.description}</p>
-                            </div>
-                        ))}
-                    </Section>
-                </div>
-                <div data-section-type="education">
-                    <Section title="Education">
-                        {formData.education?.map((edu, index) => (
-                            <div key={index} className="M1-item">
-                                <h4>{edu.institution}</h4>
-                                <span>{edu.stYear} - {edu.endYear}</span>
-                                <p>{edu.degree}</p>
-                            </div>
-                        ))}
-                    </Section>
-                </div>
+    // Delay measurement to ensure content is rendered
+    setTimeout(measureAndSplitContent, 0);
+  }, [formData]);
+
+  const renderSection = (type, content) => {
+    switch (type) {
+      case 'summary':
+        return (
+          <div className="M1-section" data-section-type="summary">
+            <h3 className="M1-section-title">Professional Summary</h3>
+            <div className="M1-section-content">
+              <p>{formData.profSummary?.summary}</p>
             </div>
+          </div>
+        );
 
+      case 'experience':
+        return (
+          <div className="M1-section" data-section-type="experience">
+            <h3 className="M1-section-title">Experience</h3>
+            <div className="M1-section-content">
+              {formData.experience?.map((exp, index) => (
+                <div key={index} className="M1-item">
+                  <div className="M1-item-header">
+                    <h4>{exp.role}</h4>
+                    <span>{exp.startDate} - {exp.endDate}</span>
+                  </div>
+                  <p className="M1-company">{exp.company}</p>
+                  <div className="M1-description">{exp.description}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
 
-            {/* Visible pages */}
-            {pageContents.map((pageContent, pageIndex) => (
-                <PageContainer key={pageIndex} pageNumber={pageIndex + 1}>
-                    {pageIndex === 0 && (
-                        <>
-                            <Header personalInfo={formData.personalInfo} />
-                            <ContactInfo personalInfo={formData.personalInfo} />
-                        </>
-                    )}
-                    <div className="M1-content">
-                        {pageContent.map((section) => (
-                            <div key={section.key}>
-                                {renderSectionContent(section.type, section.content)}
-                            </div>
-                        ))}
-                    </div>
-                </PageContainer>
+      case 'projects':
+        return (
+          <div className="M1-section" data-section-type="projects">
+            <h3 className="M1-section-title">Projects</h3>
+            <div className="M1-section-content">
+              {formData.projects?.map((project, index) => (
+                <div key={index} className="M1-item">
+                  <div className="M1-item-header">
+                    <h4>{project.title}</h4>
+                    <span>{project.date}</span>
+                  </div>
+                  <p>{project.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+
+      case 'education':
+        return (
+          <div className="M1-section" data-section-type="education">
+            <h3 className="M1-section-title">Education</h3>
+            <div className="M1-section-content">
+              {formData.education?.map((edu, index) => (
+                <div key={index} className="M1-item">
+                  <div className="M1-item-header">
+                    <h4>{edu.degree}</h4>
+                    <span>{edu.stYear} - {edu.endYear}</span>
+                  </div>
+                  <p>{edu.institution}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  };
+
+  const Header = ({ personalInfo }) => (
+    <div className="M1-header">
+      <h1 className="M1-name">{personalInfo?.name || 'YOUR NAME'}</h1>
+      <h2 className="M1-title">{personalInfo?.title || 'PROFESSIONAL TITLE'}</h2>
+      <div className="M1-divider"></div>
+      <div className="M1-contact">
+        <span>{personalInfo?.email}</span>
+        <span className="M1-separator">•</span>
+        <span>{personalInfo?.phone}</span>
+        <span className="M1-separator">•</span>
+        <span>{personalInfo?.address}</span>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="M1-container">
+      {/* Hidden content for measurement */}
+      <div ref={contentRef} style={{ position: 'absolute', visibility: 'hidden', width: '794px' }}>
+        {renderSection('summary')}
+        {renderSection('experience')}
+        {renderSection('projects')}
+        {renderSection('education')}
+      </div>
+
+      {/* Visible pages */}
+      {pages.map((pageContent, pageIndex) => (
+        <div key={pageIndex} className="M1-page">
+          {pageIndex === 0 && <Header personalInfo={formData.personalInfo} />}
+          <div className="M1-content">
+            {pageContent.map((section, sectionIndex) => (
+              <div
+                key={sectionIndex}
+                className="M1-section"
+                dangerouslySetInnerHTML={{ __html: section.content }}
+              />
             ))}
+          </div>
+          <div className="M1-page-number">Page {pageIndex + 1}</div>
         </div>
-    );
+      ))}
+    </div>
+  );
 };
 
 export default MultiTemp1;
