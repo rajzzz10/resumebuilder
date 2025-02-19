@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import '../css/MultiTemp1.css'
 
 const MultiTemp1 = ({ formData }) => {
   const [pages, setPages] = useState([]);
@@ -91,8 +92,8 @@ const MultiTemp1 = ({ formData }) => {
               {formData.projects?.map((project, index) => (
                 <div key={index} className="M1-item">
                   <div className="M1-item-header">
-                    <h4>{project.title}</h4>
-                    <span>{project.date}</span>
+                    <h4>{project.name}</h4>
+                    <span>{project.startDate || '20XX'} - {project.endDate || 'Present'}</span>
                   </div>
                   <p>{project.description}</p>
                 </div>
@@ -118,6 +119,55 @@ const MultiTemp1 = ({ formData }) => {
             </div>
           </div>
         );
+
+      case 'skills':
+        return (
+            <div className="M1-section" data-section-type="education">
+              <h3 className="M1-section-title">Skills</h3>
+              <div className="M1-section-content">
+                {formData.skills?.map((skill, index) => (
+                  <div key={index} className="M1-item">
+                    <div className="M1-item-header">
+                      <h4>{skill}</h4>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+
+          case 'languages':
+        return (
+            <div className="M1-section" data-section-type="education">
+              <h3 className="M1-section-title">Languages</h3>
+              <div className="M1-section-content">
+                {formData.otherDetails?.languages?.map((lang, index) => (
+                  <div key={index} className="M1-item">
+                    <div className="M1-item-header">
+                    <li style={{listStyle : 'square' , paddingRight : '3px'}}>{lang}</li>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        
+          case 'hobbies':
+        return (
+            <div className="M1-section" data-section-type="education">
+              <h3 className="M1-section-title">Hobbies</h3>
+              <div className="M1-section-content">
+                {formData.otherDetails?.hobbies?.map((hobby, index) => (
+                  <div key={index} className="M1-item">
+                    <div className="M1-item-header">
+                    <li style={{listStyle : 'square' , paddingRight : '3px'}}>{hobby}</li>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+
 
       default:
         return null;
@@ -147,6 +197,10 @@ const MultiTemp1 = ({ formData }) => {
         {renderSection('experience')}
         {renderSection('projects')}
         {renderSection('education')}
+        {renderSection('skills')}
+        {renderSection('languages')}
+        {renderSection('hobbies')}
+
       </div>
 
       {/* Visible pages */}
