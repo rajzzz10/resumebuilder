@@ -1,137 +1,224 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../css/MultiTemp1.css';
 
 const MultiTemp1 = ({ formData }) => {
-    // Helper function to check if a section has content
-    const hasContent = (section) => {
-        if (!section) return false;
-        if (Array.isArray(section)) return section.length > 0;
-        if (typeof section === 'object') return Object.keys(section).length > 0;
-        return !!section;
-    };
+    const [pageContents, setPageContents] = useState([]);
+    const contentRef = useRef(null);
 
-    // Splitting content into pages dynamically
-    const createPages = () => {
-        const sections = [];
+    const A4_HEIGHT_PX = 1123; // 297mm in pixels at 96 DPI
+    const HEADER_HEIGHT = 150; // Reduced header height for minimalist design
 
-        // Add sections based on the available formData
-        if (formData.profSummary?.summary) {
-            sections.push(
-                <div className="M1-section">
-                    <h3 className="M1-section-title">Professional Summary</h3>
-                    <p className="M1-summary">{formData.profSummary.summary}</p>
-                </div>
-            );
+    useEffect(() => {
+        if (contentRef.current) {
+            setTimeout(() => {
+                const contentElements = Array.from(contentRef.current.children);
+                console.log("Detected elements:", contentElements.map(el => el.dataset.sectionType));
+    
+                let currentPage = [];
+                let currentHeight = HEADER_HEIGHT;
+                let pages = [];
+    
+                contentElements.forEach((element, index) => {
+                    console.log("Processing section:", element.dataset.sectionType);
+    
+                    const elementContent = {
+                        type: element.dataset.sectionType,
+                        content: element.innerHTML,
+                        key: index
+                    };
+    
+                    if (currentHeight + element.offsetHeight > A4_HEIGHT_PX) {
+                        pages.push(currentPage);
+                        currentPage = [elementContent];
+                        currentHeight = HEADER_HEIGHT + element.offsetHeight;
+                    } else {
+                        currentPage.push(elementContent);
+                        currentHeight += element.offsetHeight;
+                    }
+                });
+    
+                if (currentPage.length > 0) {
+                    pages.push(currentPage);
+                }
+    
+                setPageContents(pages);
+            }, 100); // Delay to ensure DOM updates
         }
+    }, [formData]);
+    
 
-        if (hasContent(formData.personalInfo)) {
-            sections.push(
-                <div className="M1-section">
-                    <h3 className="M1-section-title">Contact Information</h3>
-                    <div className="M1-contact-grid">
-                        {formData.personalInfo.email && (
-                            <div className="M1-contact-item">
-                                <span className="M1-icon">✉️</span>
-                                <span>{formData.personalInfo.email}</span>
-                            </div>
-                        )}
-                        {formData.personalInfo.phone && (
-                            <div className="M1-contact-item">
-                                <span className="M1-icon">📱</span>
-                                <span>{formData.personalInfo.phone}</span>
-                            </div>
-                        )}
-                        {formData.personalInfo.address && (
-                            <div className="M1-contact-item">
-                                <span className="M1-icon">📍</span>
-                                <span>{formData.personalInfo.address}</span>
-                            </div>
-                        )}
-                    </div>
+
+    const PageContainer = ({ children, pageNumber }) => (
+        <div className="M1-page">
+            {children}
+            <div className="M1-page-number">Page {pageNumber}</div>
+        </div>
+    );
+
+    const Header = ({ personalInfo }) => (
+        <div className="M1-header">
+            <h1 className="M1-name">{personalInfo?.name || 'YOUR NAME'}</h1>
+            <h2 className="M1-title">{personalInfo?.title || 'PROFESSIONAL TITLE'}</h2>
+            <div className="M1-divider"></div>
+        </div>
+    );
+
+    const Section = ({ title, children }) => (
+        children && (
+            <div className="M1-section">
+                <h3 className="M1-section-title">{title}</h3>
+                <div className="M1-section-content">
+                    {children}
                 </div>
-            );
-        }
+            </div>
+        )
+    );
 
-        if (hasContent(formData.projects)) {
-            sections.push(
-                <div className="M1-section">
-                    <h3 className="M1-section-title">Projects</h3>
-                    {formData.projects.map((project, index) => (
-                        <div key={index} className="M1-project-item">
-                            <h4 className="M1-project-title">{project.title}</h4>
-                            <p className="M1-project-date">{project.date}</p>
-                            <p className="M1-project-description">{project.description}</p>
-                        </div>
-                    ))}
-                </div>
-            );
-        }
+    const ContactInfo = ({ personalInfo }) => (
+        <div className="M1-contact">
+            <span>{personalInfo?.email}</span>
+            <span className="M1-separator">•</span>
+            <span>{personalInfo?.phone}</span>
+            <span className="M1-separator">•</span>
+            <span>{personalInfo?.adress}</span>
+        </div>
+    );
 
-        if (hasContent(formData.education)) {
-            sections.push(
-                <div className="M1-section">
-                    <h3 className="M1-section-title">Education</h3>
-                    {formData.education.map((edu, index) => (
-                        <div key={index} className="M1-education-item">
-                            <h4>{edu.institution}</h4>
-                            <p>{edu.degree}</p>
-                            <p className="M1-date">{edu.stYear} - {edu.endYear}</p>
-                        </div>
-                    ))}
-                </div>
-            );
-        }
-
-        if (hasContent(formData.skills)) {
-            sections.push(
-                <div className="M1-section">
-                    <h3 className="M1-section-title">Skills</h3>
-                    <div className="M1-skills-grid">
-                        {formData.skills.map((skill, index) => (
-                            <div key={index} className="M1-skill-item">
-                                <span className="M1-check">✓</span>
-                                {skill}
+    const renderSectionContent = (type, content) => {
+        switch (type) {
+            case 'summary':
+                return (
+                    <Section title="Professional Summary">
+                        <p>{formData.profSummary?.summary}</p>
+                    </Section>
+                );
+            case 'experience':
+                return (
+                    <Section title="Experience">
+                        {formData.experience?.map((exp, index) => (
+                            <div key={index} className="M1-item">
+                                <div className="M1-item-header">
+                                    <h4>{exp.role}</h4>
+                                    <span>{exp.startDate} - {exp.endDate}</span>
+                                </div>
+                                <p className="M1-company">{exp.company}</p>
+                                <ul>
+                                    {exp.description}
+                                </ul>
                             </div>
                         ))}
-                    </div>
-                </div>
-            );
+                    </Section>
+                );
+            case 'projects':
+                return (
+                    <Section title="Projects">
+                        {formData.projects?.map((project, index) => (
+                            <div key={index} className="M1-item">
+                                <div className="M1-item-header">
+                                    <h4>{project.title}</h4>
+                                    <span>{project.date}</span>
+                                </div>
+                                <p>{project.description}</p>
+                            </div>
+                        ))}
+                    </Section>
+                );
+            case 'education':
+                return (
+                    <Section title="Education">
+                        {formData.education?.map((edu, index) => (
+                            <div key={index} className="M1-item">
+                                <div className="M1-item-header">
+                                    <p>{edu.degree}</p>
+                                    <span>{edu.stYear} - {edu.endYear}</span>
+                                </div>
+                                <p>{edu.institution}</p>
+                            </div>
+                        ))}
+                    </Section>
+                );
+            case 'skills':
+                return (
+                    <Section title="Skills">
+                        {formData.skills?.map((skill, index) => (
+                            <div key={index} className="M1-item">
+                                <div className="M1-item-header">
+                                <span className="C1-check-icon">✓</span>
+                                {skill}
+                                </div>
+                            </div>
+                        ))}
+                    </Section>
+                );
+            // Add other sections as needed
+            default:
+                return null;
         }
-
-        const pages = [];
-        let currentPage = [];
-        let height = 0;
-        const maxHeight = 1000; // Approximate max height per A4 page
-
-        sections.forEach((section, index) => {
-            if (height + 200 > maxHeight) {
-                pages.push([...currentPage]);
-                currentPage = [];
-                height = 0;
-            }
-            currentPage.push(section);
-            height += 200;
-        });
-
-        if (currentPage.length > 0) {
-            pages.push([...currentPage]);
-        }
-
-        return pages;
     };
 
     return (
-        <div className="M1-wrapper">
-            {createPages().map((pageContent, index) => (
-                <div key={index} className="M1-page">
-                    {index === 0 && (
-                        <div className="M1-header">
-                            <h1 className="M1-name">{formData.personalInfo?.name || 'YOUR NAME'}</h1>
-                            <h2 className="M1-job-title">{formData.personalInfo?.title || 'PROFESSIONAL TITLE'}</h2>
-                        </div>
-                    )}
-                    <div className="M1-content">{pageContent}</div>
+        <div className="M1-container">
+            {/* Hidden content for measurement */}
+            {/* Hidden content for measurement */}
+            <div ref={contentRef} style={{ position: 'absolute', visibility: 'hidden' }}>
+                <div data-section-type="summary">
+                    <Section title="Professional Summary">
+                        <p>{formData.profSummary?.summary}</p>
+                    </Section>
                 </div>
+                <div data-section-type="experience">
+                    <Section title="Experience">
+                        {formData.experience?.map((exp, index) => (
+                            <div key={index} className="M1-item">
+                                <h4>{exp.role}</h4>
+                                <span>{exp.startDate} - {exp.endDate}</span>
+                                <p>{exp.company}</p>
+                            </div>
+                        ))}
+                    </Section>
+                </div>
+                <div data-section-type="projects">
+                    <Section title="Projects">
+                        {formData.projects?.map((project, index) => (
+                            <div key={index} className="M1-item">
+                                <h4>{project.title}</h4>
+                                <span>{project.date}</span>
+                                <p>{project.description}</p>
+                            </div>
+                        ))}
+                    </Section>
+                </div>
+                <div data-section-type="education">
+                    <Section title="Education">
+                        {formData.education?.map((edu, index) => (
+                            <div key={index} className="M1-item">
+                                <h4>{edu.institution}</h4>
+                                <span>{edu.stYear} - {edu.endYear}</span>
+                                <p>{edu.degree}</p>
+                            </div>
+                        ))}
+                    </Section>
+                </div>
+            </div>
+
+
+            {/* Visible pages */}
+            {pageContents.map((pageContent, pageIndex) => (
+                <PageContainer key={pageIndex} pageNumber={pageIndex + 1}>
+                    {pageIndex === 0 && (
+                        <>
+                            <Header personalInfo={formData.personalInfo} />
+                            <ContactInfo personalInfo={formData.personalInfo} />
+                        </>
+                    )}
+                    <div className="M1-content">
+                        {pageContent.map((section) => (
+                            <div key={section.key}>
+                                {renderSectionContent(section.type, section.content)}
+                            </div>
+                        ))}
+                    </div>
+                </PageContainer>
             ))}
         </div>
     );
