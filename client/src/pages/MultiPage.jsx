@@ -48,10 +48,18 @@ const MultiPage = () => {
     };
 
     const handleTemplateSelection = (template) => {
-        setSelectedTemplate(template);
-        updateCheckState({ hasImage: selectedTemplate.hasImage, hasProject: selectedTemplate.hasProject, hasExperience: selectedTemplate.hasExperience , hasCertification : selectedTemplate.hasCertification ,selectedTemplate: selectedTemplate });
-          navigate("/form");
-      };
+        setSelectedTemplate(template);  // This updates the state asynchronously
+        
+        updateCheckState({ 
+            hasImage: template.hasImage, 
+            hasProject: template.hasProject, 
+            hasExperience: template.hasExperience, 
+            hasCertification: template.hasCertification, 
+            selectedTemplate: template 
+        });
+    
+        navigate("/form");
+    };    
 
     return (
         <>
