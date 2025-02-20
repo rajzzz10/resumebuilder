@@ -32,14 +32,12 @@ const MultiTemp1 = ({ formData }) => {
     // Split header (title/role, dates)
     const headerContent = `
       <div class="M1-item-header">
-        <h4>${type === 'experience' ? item.role : item.name}</h4>
+        <h4>${type === 'experience' ? `${item.role} - ${item.company}` : item.name }</h4>
         <span>${type === 'experience' ? `${item.stDate} - ${item.endDate}` : 
           `${item.startDate || '20XX'} - ${item.endDate || 'Present'}`}</span>
       </div>
     `;
-    const headerHeight = measureTextHeight(headerContent, CONTENT_WIDTH, {
-      marginBottom: '5px'
-    });
+    const headerHeight = measureTextHeight(headerContent, CONTENT_WIDTH);
     elements.push({
       content: headerContent,
       height: headerHeight,
@@ -48,17 +46,15 @@ const MultiTemp1 = ({ formData }) => {
     });
 
     // Company/subtitle (for experience)
-    if (type === 'experience' && item.company) {
-      const companyContent = `<p class="M1-company">${item.company}</p>`;
-      const companyHeight = measureTextHeight(companyContent, CONTENT_WIDTH, {
-        marginBottom: '5px'
-      });
-      elements.push({
-        content: companyContent,
-        height: companyHeight,
-        type: `${type}-company`
-      });
-    }
+    // if (type === 'experience' && item.company) {
+    //   const companyContent = `<p class="M1-company">( Company/Instituition name - ${item.company} )</p>`;
+    //   const companyHeight = measureTextHeight(companyContent, CONTENT_WIDTH );
+    //   elements.push({
+    //     content: companyContent,
+    //     height: companyHeight,
+    //     type: `${type}-company`
+    //   });
+    // }
 
     // Split description into paragraphs
     const description = item.description || '';
@@ -66,9 +62,7 @@ const MultiTemp1 = ({ formData }) => {
 
     paragraphs.forEach((paragraph, idx) => {
       const paraContent = `<p class="M1-description">${paragraph}</p>`;
-      const paraHeight = measureTextHeight(paraContent, CONTENT_WIDTH, {
-        marginBottom: idx === paragraphs.length - 1 ? '20px' : '10px'
-      });
+      const paraHeight = measureTextHeight(paraContent, CONTENT_WIDTH);
       elements.push({
         content: paraContent,
         height: paraHeight,
@@ -240,7 +234,7 @@ const MultiTemp1 = ({ formData }) => {
 
   const renderContent = (item) => {
     if (item.type === 'title') {
-      return <h3 className="M1-section-title">{item.content}</h3>;
+      return <h3 className="M1-section-title">{item.content} -</h3>;
     }
     return <div 
       dangerouslySetInnerHTML={{ __html: item.content }}

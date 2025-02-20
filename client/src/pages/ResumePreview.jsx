@@ -25,6 +25,54 @@ const ResumePreview = () => {
     const navigate = useNavigate();
     const { formData, selectedTemplate } = location.state || {};
 
+    // const handleMultipageDownload = async () => {
+    //     const input = document.getElementById('resume');
+    //     const pages = input.querySelectorAll('.M1-page');
+    //     const pdf = new jsPDF('p', 'mm', 'a4');
+        
+    //     for (let i = 0; i < pages.length; i++) {
+    //         // Reset any transform on the page for proper capture
+    //         const page = pages[i];
+    //         const originalTransform = page.style.transform;
+    //         page.style.transform = "none";
+            
+    //         // Ensure the page is visible for capture
+    //         page.style.display = 'block';
+            
+    //         try {
+    //             const canvas = await html2canvas(page, {
+    //                 scale: 2,
+    //                 useCORS: true,
+    //                 logging: false,
+    //                 windowWidth: 794, // A4 width in pixels
+    //                 windowHeight: 1123 // A4 height in pixels
+    //             });
+
+    //             const imgData = canvas.toDataURL('image/png');
+                
+    //             // Add new page if not first page
+    //             if (i > 0) {
+    //                 pdf.addPage();
+    //             }
+
+    //             // Add image to PDF
+    //             const imgWidth = pdf.internal.pageSize.getWidth();
+    //             const imgHeight = pdf.internal.pageSize.getHeight();
+                
+    //             pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                
+    //             // Restore original transform
+    //             page.style.transform = originalTransform;
+                
+    //         } catch (error) {
+    //             console.error('Error generating PDF:', error);
+    //         }
+    //     }
+        
+    //     // Save the PDF
+    //     pdf.save('multipage-resume.pdf');
+    // };
+
     const renderTemplatePreview = () => {
         if (!selectedTemplate) return null;
 
@@ -64,6 +112,11 @@ const ResumePreview = () => {
     };
 
     const handleDownload = () => {
+        // If it's a multipage template, use the multipage download handler
+        // if (selectedTemplate?.name.includes('Multipage Template')) {
+        //     handleMultipageDownload();
+        //     return;
+        // }
         const input = document.getElementById('resume');
 
         input.style.transform = "scale(1)";

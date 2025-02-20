@@ -4,6 +4,7 @@ import { CheckContext } from '../context/checkContext';
 const PersonalInfo = ({ formData, handleChange }) => {
     const { checkState } = useContext(CheckContext);
     const { hasImage } = checkState;
+    console.log("hasImage", hasImage)
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];

@@ -25,16 +25,16 @@
   
   .M1-section-title {
     font-size: 22px;
-    color: #333;
+    color: #4baaad;
     margin: 0 0 15px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
   }
   
-  .M1-item {
+  /* .M1-item {
     margin-bottom: 20px;
-  }
+  } */
   
   .M1-item-header {
     display: flex;
@@ -52,13 +52,11 @@
   
   .M1-company {
     color: #666;
-    margin: 5px 0;
-    font-size: 14px;
+    font-size: 20px;
   }
   
   .M1-description {
     white-space: pre-line;
-    margin-top: 10px;
     font-size: 14px;
     color: #444;
   }
@@ -84,7 +82,7 @@
   
   .M1-divider {
     height: 1px;
-    background: #333;
+    background: #4baaad;
     width: 100%;
     margin: 0 auto;
   }
