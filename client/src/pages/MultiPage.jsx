@@ -11,7 +11,7 @@ const MultiPage = () => {
   const navigate = useNavigate();
 
     const templates = [
-        { id: 1, name: "Multipage Template 1", image: "/templateImages/multipage-Templates/multiTemp1.jpg", hasImage: true, hasProject: true , hasExperience: true, hasCertification: false},
+        { id: 1, name: "Multipage Template 1", image: "/templateImages/multipage-Templates/multiTemp1.jpg", hasImage: false, hasProject: true , hasExperience: true, hasCertification: false},
         // { id: 2, name: "Fresher Template 2", image: "/templateImages/freshers-Templates/fresherTemp2.webp", hasImage: true, hasProject: false },
         // { id: 3, name: "Fresher Template 3", image: "/templateImages/freshers-Templates/FresherTemp4.jpg", hasImage: true, hasProject: true },
         // { id: 4, name: "Fresher Template 4", image: "/templateImages/freshers-Templates/fresherTemp3.webp", hasImage: true, hasProject: true },
