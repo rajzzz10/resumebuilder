@@ -16,62 +16,85 @@ import ExpTemp2 from '../templatepreviews/ExpTemp2';
 import CertTemp2 from '../templatepreviews/CertTemp2';
 import CertTemp1 from '../templatepreviews/CertTemp1';
 import MultiTemp1 from '../templatepreviews/MultiTemp1';
-import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
-import htmlToPdfMake from "html-to-pdfmake";
 
 const ResumePreview = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { formData, selectedTemplate } = location.state || {};
 
-    // const handleMultipageDownload = async () => {
-    //     const input = document.getElementById('resume');
-    //     const pages = input.querySelectorAll('.M1-page');
-    //     const pdf = new jsPDF('p', 'mm', 'a4');
-        
-    //     for (let i = 0; i < pages.length; i++) {
-    //         // Reset any transform on the page for proper capture
-    //         const page = pages[i];
-    //         const originalTransform = page.style.transform;
-    //         page.style.transform = "none";
+    const handleMultipageDownload = async () => {
+        const pages = document.querySelectorAll(".M1-page");
+        const pdf = new jsPDF({
+            orientation: "portrait",
+            unit: "pt", // Use points for more precise measurements
+            format: "a4"
+        });
+    
+        // A4 dimensions in points (72 points per inch)
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+    
+        for (let i = 0; i < pages.length; i++) {
+            const page = pages[i];
             
-    //         // Ensure the page is visible for capture
-    //         page.style.display = 'block';
-            
-    //         try {
-    //             const canvas = await html2canvas(page, {
-    //                 scale: 2,
-    //                 useCORS: true,
-    //                 logging: false,
-    //                 windowWidth: 794, // A4 width in pixels
-    //                 windowHeight: 1123 // A4 height in pixels
-    //             });
-
-    //             const imgData = canvas.toDataURL('image/png');
+            // Store original styles
+            const originalStyles = {
+                transform: page.style.transform,
+                width: page.style.width,
+                minHeight: page.style.minHeight,
+                margin: page.style.margin
+            };
+    
+            // Set temporary styles for capture
+            page.style.transform = 'none';
+            page.style.width = '794px';  // Match your CSS width
+            page.style.minHeight = '1123px'; // Match your CSS height
+            page.style.margin = '0';
+    
+            try {
+                const canvas = await html2canvas(page, {
+                    scale: 2, // Higher scale for better quality
+                    useCORS: true,
+                    logging: false,
+                    width: 794, // Exact pixel width
+                    height: 1123, // Exact pixel height
+                    windowWidth: 794,
+                    windowHeight: 1123,
+                    onclone: (clonedDoc) => {
+                        // Ensure the cloned element has the correct dimensions
+                        const clonedPage = clonedDoc.querySelector('.M1-page');
+                        if (clonedPage) {
+                            clonedPage.style.width = '794px';
+                            clonedPage.style.height = '1123px';
+                        }
+                    }
+                });
+    
+                // Add new page if not first page
+                if (i > 0) {
+                    pdf.addPage();
+                }
+    
+                // Calculate dimensions to maintain aspect ratio
+                const imgData = canvas.toDataURL('image/png', 1.0);
                 
-    //             // Add new page if not first page
-    //             if (i > 0) {
-    //                 pdf.addPage();
-    //             }
-
-    //             // Add image to PDF
-    //             const imgWidth = pdf.internal.pageSize.getWidth();
-    //             const imgHeight = pdf.internal.pageSize.getHeight();
-                
-    //             pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-                
-    //             // Restore original transform
-    //             page.style.transform = originalTransform;
-                
-    //         } catch (error) {
-    //             console.error('Error generating PDF:', error);
-    //         }
-    //     }
-        
-    //     // Save the PDF
-    //     pdf.save('multipage-resume.pdf');
-    // };
+                // Add image with exact A4 dimensions
+                pdf.addImage(imgData, 'PNG', 0, 0, pageWidth, pageHeight, undefined, 'FAST');
+    
+                // Restore original styles
+                Object.entries(originalStyles).forEach(([prop, value]) => {
+                    page.style[prop] = value;
+                });
+    
+            } catch (error) {
+                console.error('Error generating PDF:', error);
+            }
+        }
+    
+        // Save the PDF
+        pdf.save('multipageResume.pdf');
+    };
+    
 
     const renderTemplatePreview = () => {
         if (!selectedTemplate) return null;
@@ -113,10 +136,10 @@ const ResumePreview = () => {
 
     const handleDownload = () => {
         // If it's a multipage template, use the multipage download handler
-        // if (selectedTemplate?.name.includes('Multipage Template')) {
-        //     handleMultipageDownload();
-        //     return;
-        // }
+        if (selectedTemplate?.name.includes('Multipage Template')) {
+            handleMultipageDownload();
+            return;
+        }
         const input = document.getElementById('resume');
 
         input.style.transform = "scale(1)";

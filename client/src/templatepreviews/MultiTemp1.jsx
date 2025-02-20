@@ -37,7 +37,9 @@ const MultiTemp1 = ({ formData }) => {
           `${item.startDate || '20XX'} - ${item.endDate || 'Present'}`}</span>
       </div>
     `;
-    const headerHeight = measureTextHeight(headerContent, CONTENT_WIDTH);
+    const headerHeight = measureTextHeight(headerContent, CONTENT_WIDTH, {
+      marginBottom: '5px'
+    });
     elements.push({
       content: headerContent,
       height: headerHeight,
@@ -62,7 +64,9 @@ const MultiTemp1 = ({ formData }) => {
 
     paragraphs.forEach((paragraph, idx) => {
       const paraContent = `<p class="M1-description">${paragraph}</p>`;
-      const paraHeight = measureTextHeight(paraContent, CONTENT_WIDTH);
+      const paraHeight = measureTextHeight(paraContent, CONTENT_WIDTH,{
+        marginBottom: idx === paragraphs.length - 1 ? '20px' : '10px'
+      });
       elements.push({
         content: paraContent,
         height: paraHeight,
