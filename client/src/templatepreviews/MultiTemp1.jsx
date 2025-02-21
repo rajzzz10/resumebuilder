@@ -94,9 +94,17 @@ const MultiTemp1 = ({ formData }) => {
       },
       {
         title: 'Education',
-        content: formData.education,
+        content: formData.education.map(item => `
+          <div class="M1-item">
+            <div class="M1-item-header">
+              <h4>${item.degree}</h4>
+              <span>${item.stYear} - ${item.endYear}</span>
+            </div>
+            <p>${item.institution}</p>
+          </div>
+        `).join(''),
         type: 'education'
-      },
+      },      
       {
         title: 'Skills',
         content: formData.skills,
