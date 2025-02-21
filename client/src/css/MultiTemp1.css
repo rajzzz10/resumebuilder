@@ -14,20 +14,6 @@
     box-sizing: border-box;
     overflow: hidden;
   }
-
-  
-  /* .M1-page {
-    width: 794px;
-    min-height: 1123px;
-    margin: 0 auto 20px;
-    background: white;
-    position: relative;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    padding: 40px;
-    box-sizing: border-box;
-    page-break-after: always;
-    page-break-inside: avoid;
-} */
   
   .M1-content {
     position: relative;
